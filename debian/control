@@ -1,0 +1,17 @@
+Source: analysis
+Section: unknown
+Priority: optional
+Maintainer: Kevin Thornton <kevin@krthornt.uchicago.edu>
+Standards-Version: 3.5.8
+Build-Depends: debmake,libboost-dev,libsequence1-dev (>= 1.3.6-1)
+
+Package: analysis
+Architecture: any
+Depends: libsequence1 (>= 1.3.6)
+Description: Missing
+ Missing
+
+Package: analysis-doc
+Architecture: all
+Description: Documentation
+ Missing

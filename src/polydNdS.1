@@ -1,0 +1,75 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH POLYDNDS 1 "April 3, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+polydNdS \- a program to calculate nucleotide diversity at silent and replacement sites
+.SH SYNOPSIS
+.B polydNdS -i <infile> -I <nint> <i j k l ...> -O <outgroup>
+.RI [ options ]
+.SH DESCRIPTION
+\fBpolydNdS\fP calculates Watterson's Theta and Pi for coding and noncoding sequence.  It outputs results for the whole locus, exons only, introns + flanking only, and replacement and silent polymorphisms.  The analysis is limited to bi-allelic data, and only codons that differ at one position or codons that differ at two positions where the sites can be unambiguously assignt as synonymous or nonsynonymous are analyzed.  The output is printed to stdout, and the format is straightforward.
+.PP
+.SH OPTIONS
+\fBpolydNdS\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze
+.TP
+.B \-I <nint> <i j k l...>
+specify nint, which is the number of exons you want to analyze. (I.E., nint is the number of pairs of coordinates along the sequence you need to specify to describe the beginning and end of every exon).  The <i j k l ...> are the coordinates of the start and stop of every exon (please input them in order!!!). See example below.
+.TP
+.B \-F <posfile>
+specify a file name containing the options that you would normally pass to \-I
+.TP
+.B \-C <codon_start>
+If your exons don't start at a first position, you can tell \fBpolydNdS\fP what the codon position is of the first exon position. Valid values are 1,2, and 3.
+.TP
+.B \-E <codon_end>
+If your exons don't end at a third position, you can tell \fBpolydNdS\fP what the codon position is of the last exon position. Valid values are 1,2, and 3.
+.TP
+.B \-P
+print polymorphism tables to files.  The file names are determined automatically
+.TP
+.B \-O <outgroup>
+specifies an outgroup sequence.  The value <outgroup> is the position of the sequence in <infile>, starting from 1 being the first sequence
+.TP
+.B \-N
+skip all sites that have missing data (the 'N' character)
+.TP
+.B \-k
+estimate the transition and transversion probabilities from the data, and use those estimates in couting the number of replacement and silent sites in the exon region of the data.  If you don't use this option, the number of replacement sites is counted as L0+L2S*(2/3)+L2V*(2/3), and the number of silent sites as L4+L2S*(1/3)+L2V*(1/3), where L0 is the number of non-degenerate sites, L2S the number of 2-fold sites where transitions are syonymous, L2V the number of 2-fold sites where transversions are synoymous, and L4 the number of 4-fold degenerate sites, respectively.  However if we estimate pTs and pTv as the probabilities of transitions and transversions, respectively, we can consider the effective number of replacement sites in the data to be L0+L2S*pTv+L2V*pTs and the number of silent sites to be L4*L2S*(1-pTv)+L2V*(1-pTs).  Note that pTs and pTv are estimated simply by counting up the mutations at sites in the data that do not violate the infinitely-many sites assumption.  This means that the procedure is prone to a large error when the number of mutations is small.  Thus, I recommend only using this procedure when you have an outgroup (because then fixed differences contribute more to the estimate than the relatively small number of SNPs present in the data).
+.TP
+.B \-A
+Provide an approximate treatment of codons in the following case. When there are two substitutions in a codon, and the pathways cannot be unambiguously assigned as silent or replacement, then assume the most conservative pathway (i.e. the one going through at least 1 silent change).
+.SH EXAMPLE
+polydNdS -i gene.fasta -I 1 300 600 -C 1 -E 3
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <kt234@cornell.edu>

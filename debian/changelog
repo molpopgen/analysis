@@ -1,0 +1,143 @@
+analysis (0.6.8-1) unstable; urgency=low
+  * added snn.cc
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  09  May  2006 10:17:00 -0600
+analysis (0.6.7-1) unstable; urgency=low
+  * compute now outputs "nan" for undefined values of Rmin
+ -- Kevin Thornton <kt234@cornell.edu>  Sun,  05  Mar  2006 16:35:00 -0600
+analysis (0.6.6-1) unstable; urgency=low
+  * fixed bug in compute where not all output was written to files.  output now more R-friendly.
+  * requires libsequence >= 1.5.9
+ -- Kevin Thornton <kt234@cornell.edu>  Wed,  31  Aug  2005 10:49:00 -0600
+analysis (0.6.5-1) unstable; urgency=low
+  * a recursive function in the compute program is now not recursive, as the recursion could crash on some systems when processing huge alignments
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  04  Oct  2004 18:08:00 -0600
+analysis (0.6.4-1) unstable; urgency=medium
+  * updated to be compatible with libsequence 1.5.4
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  04  Oct  2004 18:08:00 -0600
+analysis (0.6.3-1) unstable; urgency=low
+  * now compiles under gcc 3.4
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  04  Oct  2004 18:08:00 -0600
+analysis (0.6.2-1) unstable; urgency=medium
+  * compute now handles outgroups that aren't the first sequence
+  * rsq no longer outputs a "dij" column
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  04  Oct  2004 18:08:00 -0600
+analysis (0.6.1-1) unstable; urgency=medium
+  * several improvements in processing codons with missing data
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  04  Oct  2004 18:08:00 -0600
+analysis (0.6.0-1) unstable; urgency=medium
+  * compute now calculates the pvalue of the Fay and Wu H statistic, rather than thetaH.
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  12  Apr  2004 18:08:00 -0600
+analysis (0.5.9-1) unstable; urgency=medium
+  * compiled vs libsequence 1.3.9
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  12  Apr  2004 11:31:00 -0600
+analysis (0.5.9-0) unstable; urgency=medium
+  * removed use of deprecated libsequence names
+  * improved counting of fixed differences for MKtest.  should make no difference in output for most data sets
+  * uses libsequence >= 1.3.8 for cleaner implementation of silent/repl. poly code
+
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  02  Feb  2004 12:26:00 -0600
+analysis (0.5.8-0) unstable; urgency=medium
+
+  * uses libsequence >= 1.3.6 for cleaner implementation of silent/repl. poly code
+
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  02  Feb  2004 12:26:00 -0600
+analysis (0.5.7-0) unstable; urgency=high
+
+  * bugfix: MKtest now generates SNP tables properly for each data set
+  * configure only checks for libsequence once
+
+ -- Kevin Thornton <kt234@cornell.edu>  Tue,  20  Jan  2004 15:34:00 -0600
+analysis (0.5.6-0) unstable; urgency=low
+
+  * compatible w/libsequence >= 1.3.5
+  * uses new implementation of coalescent algorithm
+  * autoconf now checks for required headers, including GSL
+  * MKtest will not calculate G-test and chi-squared test if GSL headers not present
+
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  19  Jan  2004 08:59:00 -0600
+analysis (0.5.5-0) unstable; urgency=low
+
+  * compatible w/libsequence >= 1.3.4
+  * autoconf now checks for required headers
+
+ -- Kevin Thornton <kt234@cornell.edu>  Mon,  12  Jan  2004 11:05:00 -0600
+analysis (0.5.4-0) unstable; urgency=low
+
+  * compatible w/libsequence >= 1.3.3
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Tue,  11  Nov  2003 10:33:00 -0600
+analysis (0.5.3-0) unstable; urgency=low
+
+  * compatible w/libsequence >= 1.3.3
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Sun,  26  Aug  2003 12:26:00 -0600
+analysis (0.5.2-0) unstable; urgency=low
+
+  * added -A option for polydNdS (see manpage)
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Wed,  13  Aug  2003 11:48:00 -0600
+analysis (0.5.1-2) unstable; urgency=low
+
+  * compiled against libsequence 1.3.2
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,  07  Aug  2003 10:38:00 -0600
+analysis (0.5.1-0) unstable; urgency=low
+
+  * man pages updated.  sharedPoly now uses class Sequence::FST to do calculations
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Wed,  06  Aug  2003 10:38:00 -0600
+analysis (0.5.0-0) unstable; urgency=low
+
+  * rewrite of sharedPoly.cc.  sharedPoly now more accurately assigns sites to shared, fixed, private, etc. and now handles site w/more than 2 states segregating.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,  22  Jul  2003 12:45:00 -0600
+analysis (0.4.9-1) unstable; urgency=low
+
+  * rewrite of code underlying polydNdS and MKtest.  Now much simpler, faster, and will be easier to maintain in the future.  This also fixes a problem in MKtest some variants were skipped.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,  15  Jul  2003 09:15:00 -0600
+analysis (0.4.8-1) unstable; urgency=low
+
+  * -I option now works for polydNdS/MKtest.  Skipping missing data no optional for those programs
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,   5  Jun  2003 08:25:00 -0600
+analysis (0.4.7-1) unstable; urgency=low
+
+  * fixed bugs in polydNdSbase.cc that caused SNPs within 1bp of intron/exon boudaries to be mislabelled as coding, non-coding, or outside the alignment.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,   5  Jun  2003 08:25:00 -0600
+analysis (0.4.6-1) unstable; urgency=low
+
+  * fixed bugs in polydNdS
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Tue,   3  Jun  2003 13:45:00 -0600
+analysis (0.4.5-1) unstable; urgency=low
+
+  * compute is now more strict about outputting "NA" for statistics where the data have no seg sites
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Mon,   19  May  2003 11:30:00 -0600
+analysis (0.4.4-1) unstable; urgency=low
+
+  * Bugfix release for compute when doing simulations when S = 0.  First release of MKtest program
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Fri,   16  May  2003 16:00:00 -0600
+analysis (0.4.3-1) unstable; urgency=low
+
+  * Bugfix release for the program polydNdS.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Fri,   5  May  2003 10:25:22 -0600
+analysis (0.4.2-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Fri,   4  Apr  2003 11:13:22 -0600
+analysis (0.4.1-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Thu,   3 Apr 2003 11:13:22 -0600
+analysis (0.4.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Kevin Thornton <kevin@krthornt.uchicago.edu>  Tue,  1 Apr 2003 11:13:22 -0600

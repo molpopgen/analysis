@@ -1,0 +1,1404 @@
+2009-01-23 16:42  kevin
+
+	* Makefile.in, aclocal.m4, configure, configure.in, depcomp,
+	  src/Makefile.am, src/Makefile.in, src/compute_classes.hpp: update
+	  to make package 0.7.2
+
+2009-01-23 16:41  kevin
+
+	* src/MKtest.cc: added #include <limits>
+
+2008-08-21 09:02  kevin
+
+	* aclocal.m4, configure, configure.in: package 0.7.1
+
+2008-08-21 09:02  kevin
+
+	* src/compute_classes.cc: changed declaration of "arg history" to
+	  "Sequence::arg history" to fix an issue with compiling on OS X.
+
+2008-01-22 09:46  kevin
+
+	* aclocal.m4, configure, configure.in: package 0.7.0
+
+2008-01-22 09:45  kevin
+
+	* src/: HBKpermute.cc, Makefile.am, Makefile.in, compute.cc,
+	  descPoly.cc, distance.cc, gestimator.cc, getopt.c, getopt.h,
+	  getopt1.c, getoptFix.h, polydNdSbase.cc, rsq.cc, sharedPoly.cc,
+	  snntest.cc: Updated use of "getopt" so that programs work on
+	  Apple's "Leopard" (OS X 10.5.x).  Testing suggests backwards
+	  compatibility w/Tiger, too.
+
+2007-11-29 09:38  kevin
+
+	* aclocal.m4, configure, configure.in, mkinstalldirs: package 0.6.9
+
+2007-11-29 09:38  kevin
+
+	* src/: MKtestOutput.cc, Makefile.am, Makefile.in, chisq.c,
+	  chisq.cc, chisq.h, chisq.hpp, compute_functions.cc, polydNdS.cc,
+	  polydNdSbase.cc: updated code to be  C99 compliant: uses isfinite
+	  instead of finite.  Changed the chisq files from C to C++ due to
+	  odd linking problems that I could not figure out.  (I was having
+	  trouble compiling them as C then linking them to the C++ program.
+	  The linker could not find isfinite)
+
+2006-06-22 07:08  kevin
+
+	* ChangeLog, config.h.in, configure, configure.in: package 0.6.8
+
+2006-06-22 05:04  kevin
+
+	* src/: Makefile.am, Makefile.in, snn.cc, snntest.cc: renamed
+	  snn.cc snntest.cc
+
+2006-06-21 17:18  kevin
+
+	* src/polydNdS.1: clarified documentation of -I option
+
+2006-06-19 08:16  kevin
+
+	* src/: descPoly.1, descPoly.cc, polyCommon.cc, polyCommon.hpp:
+	  site frequency spectrum is now either folded or unfolded, rather
+	  than based on minor allele frequency (which was a half-assed
+	  thing to do in the first place).
+
+2006-06-19 08:14  kevin
+
+	* src/: compute_classes.cc, compute_functions.cc: now outputs
+	  number of derived singletons for data sets with outgroup
+
+2006-05-09 07:22  kevin
+
+	* src/: Makefile.am, Makefile.in: fixed bug in snn_SOURCE
+
+2006-05-09 07:17  kevin
+
+	* configure, configure.in, debian/changelog, src/Makefile.am,
+	  src/Makefile.in: package 0.6.8
+
+2006-05-09 07:16  kevin
+
+	* src/snn.cc: program to execute Hudson's Snn test
+
+2006-05-04 11:58  kevin
+
+	* src/compute_functions.cc: some changes to output to be more
+	  R-friendly.
+
+2006-05-04 11:45  kevin
+
+	* src/compute_classes.cc: added a missing output of '\n' so that
+	  output from compute is as it should be when -V and -p are used in
+	  combination
+
+2006-03-05 13:39  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.7
+
+2006-03-05 13:34  kevin
+
+	* src/compute_classes.cc: now output nan for undefined values of
+	  Rmin
+
+2005-09-20 11:54  kevin
+
+	* debian/changelog: package 0.6.6
+
+2005-09-06 09:14  kevin
+
+	* src/polydNdS.1: updated man page to correctly describe -I
+
+2005-08-31 07:55  kevin
+
+	* debian/changelog: corrected day entry for 0.6.6
+
+2005-08-31 07:51  kevin
+
+	* configure, configure.in, debian/changelog: pacakge 0.6.6
+
+2005-08-31 07:43  kevin
+
+	* src/compute_classes.cc: coalescent simulation now compatible with
+	  libsequence 1.5.9
+
+2005-08-31 07:42  kevin
+
+	* src/compute_functions.cc: changed output to be more R-friendly
+
+2005-08-31 07:42  kevin
+
+	* src/compute.cc: when writing to a file, outfile stream is now
+	  flushed to make sure that all output gets written
+
+2005-06-07 04:17  kevin
+
+	* src/chisq.c: now checks that chisq values are finite, and if not,
+	  gives nan as a pvalue
+
+2005-06-06 04:55  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.5
+
+2005-06-05 09:50  kevin
+
+	* src/compute_classes.cc: definition of removeFixedInsertions is no
+	  longer recurive.  The recursive implementation caused segfaults
+	  on some systems when processing very large alignments
+
+2005-05-27 13:05  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.4
+
+2005-05-27 12:59  kevin
+
+	* src/: Makefile.am, Makefile.in: added requirement for gsl for
+	  compute
+
+2005-05-27 12:58  kevin
+
+	* src/MKtest.1: clarified some of the documentation
+
+2005-05-27 12:57  kevin
+
+	* src/: compute_classes.cc, compute_classes.hpp,
+	  compute_functions.cc: updated to coalescent simulation code in
+	  libsequence 1.5.4
+
+2005-04-29 12:40  kevin
+
+	* aclocal.m4, config.h.in, configure, configure.in,
+	  debian/changelog: package 0.6.3
+
+2005-04-29 12:38  kevin
+
+	* src/descPoly.cc: removed an extraneous ; that caused problems
+	  with gcc 3.4
+
+2004-11-03 14:19  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.2
+
+2004-11-03 14:18  kevin
+
+	* src/rsq.cc: no longer outputs dij column
+
+2004-11-03 14:18  kevin
+
+	* src/compute_classes.cc: no longer exits with error if outgroup
+	  number is > 1
+
+2004-10-05 12:07  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.1
+
+2004-10-05 12:06  kevin
+
+	* src/compute.1: documented defining outgroup more accurately
+
+2004-10-05 12:06  kevin
+
+	* src/CodonMaker.cc: added extra check to ensure codons chosen are
+	  not identical
+
+2004-10-05 12:05  kevin
+
+	* src/: cRPimpl.cc, cRPimpl.hpp, polydNdS.cc, polydNdSbase.cc:
+	  fixed several "special case" bugs in processing coding regions.
+	  Thanks to Josh Shapiro for pointing these out & providing fixes
+
+2004-10-05 12:04  kevin
+
+	* src/: compute.cc, compute_classes.cc, compute_classes.hpp,
+	  compute_functions.cc: better reporting of "not applicable" in
+	  output when summary stats can't be calculated since there are too
+	  few seg sites
+
+2004-07-02 07:29  kevin
+
+	* src/compute_functions.hpp: changed function declarations
+
+2004-07-02 07:29  kevin
+
+	* src/rsq.cc: now outputs both site positions and the distance b/w
+	  sites
+
+2004-07-02 07:26  kevin
+
+	* src/rsq.1: updated to new behavior of the Disequilibrium()
+	  routine in libsequence
+
+2004-04-14 10:43  kevin
+
+	* src/: Makefile.am, Makefile.in, compute.cc, compute_classes.cc,
+	  compute_classes.hpp, compute_functions.cc, compute_functions.hpp:
+	  compute is now object based rather than procedural
+
+2004-04-12 15:12  kevin
+
+	* configure, configure.in, debian/changelog: package 0.6.0
+
+2004-04-12 15:12  kevin
+
+	* src/compute_functions.cc: pvalue for fay-wu H now done correctly
+
+2004-04-12 08:32  kevin
+
+	* debian/changelog: updated to 0.5.9-1, compiled vs libsequence
+	  1.3.9
+
+2004-04-08 07:00  kevin
+
+	* configure, configure.in, debian/changelog: package version 0.5.9
+
+2004-04-08 06:57  kevin
+
+	* src/compute_functions.cc: removed use of deprecated header
+	  <Sequence/Hudson2001.hpp>
+
+2004-04-08 06:53  kevin
+
+	* src/MKtest.cc: added an extra check to the counting of fixed
+	  differences that should prevent the possibility of (rare)
+	  miscounts
+
+2004-04-08 06:52  kevin
+
+	* src/polyCommon.cc: removed use of deprecated libsequence typedefs
+
+2004-04-08 06:51  kevin
+
+	* src/: rsq.cc, sharedPoly.cc: removed inclusion of deprecated
+	  libsequence headers
+
+2004-02-02 09:36  kevin
+
+	* configure, configure.in, debian/changelog, debian/control:
+	  package 0.5.8
+
+2004-02-02 09:25  kevin
+
+	* src/: CodonMaker.cc, MKtest.cc, MKtestOutput.cc,
+	  MKtestOutput.hpp, Makefile.am, Makefile.in, cRPimpl.cc,
+	  cRPimpl.hpp, codingRegionProcessor.cc, codingRegionProcessor.hpp,
+	  polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp, sharedPoly.cc:
+	  calculation of silent and replacement poly now uses routines in
+	  <Sequence/shortestPath.hpp>, allowing for a much cleaner
+	  implementation of these programs
+
+2004-01-20 12:22  kevin
+
+	* configure, configure.in, debian/changelog: package 0.5.7 : bugfix
+	  release.  SNP tables for MKtest now generated correctly
+
+2004-01-20 12:12  kevin
+
+	* src/MKtest.cc: There was a bug in generating the SNP tables for
+	  each locus.  Josh Shapiro caught it, and its now fixed. They were
+	  being generated from the data object, rather than gene1 and
+	  gene2.
+
+2004-01-19 06:04  kevin
+
+	* configure, configure.in, debian/changelog, src/Makefile.am,
+	  src/Makefile.in: package 0.5.6 : autoconf now checks for GSL
+	  headers.  If they are present, -DHAVE_GSL is passed to the
+	  compiler.  This is used in MKtest to decide if the G-test and
+	  chi-squared tests will be compiled in, which only happens if
+	  HAVE_GSL is defined
+
+2004-01-19 05:58  kevin
+
+	* src/: MKtest.cc, chisq.c, chisq.h, g2.c, g2.h: now checks for #if
+	  defined (HAVE_GSL) to decide whether or not to calculate G-test
+	  and chi-squared tests
+
+2004-01-19 05:57  kevin
+
+	* src/cRPimpl.cc: simplified checking for stop codons
+
+2004-01-19 05:56  kevin
+
+	* src/polyCommon.cc: uses Sequence::SEQMAXUNSIGNED now instead of
+	  defining a new constant
+
+2004-01-19 05:56  kevin
+
+	* src/: compute.cc, compute_functions.cc, compute_functions.hpp:
+	  uses new implementation of coalescent algorithm
+	  (Sequence::coalNoRec)
+
+2004-01-12 15:35  kevin
+
+	* src/compute_functions.cc: now exits with error if input data
+	  contain characters other than {A,G,C,T,N,-}
+
+2004-01-12 08:08  kevin
+
+	* aclocal.m4, configure, configure.in, debian/changelog,
+	  debian/control: package 0.5.4
+
+2004-01-12 07:18  kevin
+
+	* src/: codingRegionProcessor.cc, codingRegionProcessor.hpp: new
+	  files
+
+2004-01-12 07:07  kevin
+
+	* src/compute.1: update to document new options
+
+2004-01-12 07:06  kevin
+
+	* src/tstvbias.cc: cleanup
+
+2004-01-12 07:06  kevin
+
+	* src/: MKtest.cc, cRPimpl.cc, gestimator.cc, translateCoding.cc:
+	  updated to new header <Sequence/Translate.hpp>
+
+2004-01-11 12:39  kevin
+
+	* src/compute_functions.cc: now removes sites with characters other
+	  than {A,G,C,T}
+
+2004-01-11 12:29  kevin
+
+	* src/: compute.cc, compute_functions.cc, compute_functions.hpp:
+	  added new option, -N, to remove all sites w/missing data.  Fixed
+	  a bug in compute where the -b option had no effect if data were
+	  input with the -h option
+
+2003-11-11 07:49  kevin
+
+	* configure, configure.in, debian/changelog, debian/control,
+	  src/Makefile.am, src/Makefile.in: package 0.5.4
+
+2003-11-11 07:31  kevin
+
+	* src/: Fexact_main.cc, HBKpermute.cc, MKtest.cc, Makefile.am,
+	  Makefile.in, compute.cc, compute_functions.cc, descPoly.cc,
+	  distance.cc, extractCoding.cc, fexact.c, gestimator.cc,
+	  int_handler.cc, polyCommon.cc, polydNdS.cc, polydNdSbase.cc,
+	  polydNdSbase.hpp, rsq.cc, sharedPoly.cc, translateCoding.cc,
+	  tstvbias.cc: Lots of changes: 1.) new classes for MKtest,
+	  polydNdS to help streamline maintenance 2.) #include "foo.h"
+	  changed to #include <foo.h> all over
+
+2003-11-11 07:31  kevin
+
+	* src/: CodonMaker.cc, CodonMaker.hpp, Warnings.cc, Warnings.hpp,
+	  cRPimpl.cc, cRPimpl.hpp: new classes to simplify
+	  silent/replacement poly calculations
+
+2003-11-11 07:27  kevin
+
+	* src/chisq.c: fixed bug that caused n to be calculated incorrectly
+
+2003-10-28 12:19  kevin
+
+	* src/: tajd.cc, tajd.1: removed
+
+2003-10-28 12:18  kevin
+
+	* src/gestimator.cc: cleanup
+
+2003-10-27 11:25  kevin
+
+	* src/gestimator.cc: now exits with an error if infile cannot be
+	  opened
+
+2003-10-27 07:32  kevin
+
+	* src/MKtest.cc: cleanup
+
+2003-10-27 07:29  kevin
+
+	* src/: MKtest.cc, polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp:
+	  process_coding_region() in polydNdSbase.cc now returns a
+	  container (class Warnings) containing any warnings that arose
+	  during processing of the data.  polydNdS.cc and MKtest.cc are
+	  updated to print such data to stderr.
+
+2003-10-27 07:15  kevin
+
+	* src/: MKtest.cc, extractCoding.cc, translateCoding.cc: now catch
+	  exceptions when calling parseargs
+
+2003-10-27 07:15  kevin
+
+	* src/polydNdSbase.cc: moved more error checking in parseargs from
+	  cerr followed by exit(1) to an exception-based strategy
+
+2003-10-26 09:23  kevin
+
+	* src/compute_functions.cc: now checks that data file can be
+	  read...
+
+2003-10-26 09:22  kevin
+
+	* src/polydNdS.cc: now makes sure that infile for alignment is
+	  available for reading
+
+2003-10-26 09:13  kevin
+
+	* src/: compute.cc, compute_functions.cc, compute_functions.hpp,
+	  polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp, rsq.cc: now do
+	  stricter checking to make sure infiles exist
+
+2003-10-15 07:56  kevin
+
+	* src/gestimator.cc: now, all exceptions really are printed to
+	  stderr :)!
+
+2003-10-15 07:55  kevin
+
+	* src/gestimator.cc: fixed typo
+
+2003-10-15 07:54  kevin
+
+	* src/gestimator.cc: output from all exception catching is now
+	  output to stderr
+
+2003-10-15 07:53  kevin
+
+	* src/: Makefile.in, translateCoding.cc: for translateCoding, will
+	  default to translating the entire alignment if no other input are
+	  given
+
+2003-09-10 11:25  kevin
+
+	* src/: Correlations.hpp, Makefile.am, Makefile.in,
+	  RandomNumbers.hpp, polydNdSbase.cc: added new files (to remove
+	  dependency on my now-defunct cpptools package).  modified
+	  polydNdSbase.cc to compile in the face of the g++ bug that causes
+	  infinited compiler recursion for templates in anonymous
+	  namespaces
+
+2003-09-08 07:38  kevin
+
+	* src/: extractCoding.cc, translateCoding.cc: added #include
+	  <iostream>
+
+2003-09-05 11:39  kevin
+
+	* src/: MKtest.cc, compute_functions.cc, compute_functions.hpp,
+	  polydNdSbase.cc, polydNdSbase.hpp: removed references to
+	  namespace Comparisons (which no longer exists), code now
+	  namespace-clean in general
+
+2003-09-03 09:02  kevin
+
+	* src/: HBKpermute.cc, MKtest.cc, chud.cc, compute_functions.cc,
+	  compute_functions.hpp, descPoly.cc, distance.cc, dists.cc,
+	  extractCoding.cc, gestimator.cc, polyCommon.cc, polyCommon.hpp,
+	  polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp, rsq.cc,
+	  sharedPoly.cc, translateCoding.cc, tstvbias.cc: updated to new
+	  libsequence structure (#include<Sequence/foo.hpp>)
+
+2003-08-13 09:50  kevin
+
+	* debian/changelog: package version 0.5.2
+
+2003-08-13 09:49  kevin
+
+	* configure, configure.in: package 0.5.2
+
+2003-08-13 09:47  kevin
+
+	* src/: polydNdS.1, polydNdS.cc: added -A option and documented it
+	  in manpage
+
+2003-08-07 07:34  kevin
+
+	* debian/changelog: package revision 0.5.1-2, compiled against
+	  libsequence 1.3.2
+
+2003-08-06 09:04  kevin
+
+	* configure, configure.in, debian/changelog, debian/control:
+	  package 0.5.1
+
+2003-08-06 09:03  kevin
+
+	* src/MKtest.1: added newline to fix formatting of manpage
+
+2003-08-06 08:37  kevin
+
+	* src/sharedPoly.cc: machinery for calculations now uses class
+	  Sequence::FST from libsequence
+
+2003-07-25 10:53  kevin
+
+	* src/polydNdS.1: more changes
+
+2003-07-25 10:50  kevin
+
+	* src/polydNdS.1: updated manpage
+
+2003-07-25 10:46  kevin
+
+	* src/: MKtest.1, sharedPoly.1: updated manpages
+
+2003-07-22 10:48  kevin
+
+	* debian/changelog: package version 0.5.0 (not 0.5.9!)
+
+2003-07-22 10:44  kevin
+
+	* configure, configure.in, debian/changelog: package 0.5.0
+
+2003-07-18 08:50  kevin
+
+	* src/sharedPoly.cc: rewrote code to handle all sorts of special
+	  cases, including 3 mutations/site.  These changes will eventually
+	  be incorporated into the FST class in libsequence
+
+2003-07-15 07:25  kevin
+
+	* Makefile.in, aclocal.m4, configure, configure.in,
+	  debian/changelog: package 0.4.9
+
+2003-07-15 07:16  kevin
+
+	* src/MKtest.cc: rewrote starting from a much simpler perspective.
+	  now seems to work much better in general.
+
+2003-07-15 07:16  kevin
+
+	* src/: polydNdSbase.cc, polydNdSbase.hpp: near-complete rewrite.
+	  much simpler (and shorter) code does the same thing as the old,
+	  clunky version.
+
+2003-07-11 07:08  kevin
+
+	* src/: Makefile.am, Makefile.in: [no log message]
+
+2003-07-11 07:06  kevin
+
+	* src/: polydNdSbase.cc, polydNdSbase.hpp: added option to
+	  process_coding_region() to allow approximate treatment of
+	  ambiguous/completely substituted codons.  NOTE: not fully
+	  implemented yet.
+
+2003-07-11 07:05  kevin
+
+	* src/MKtest.cc: a near-complete re-write of the internals.  added
+	  options for approximate treatment of divergent codons when
+	  calculating divergence.
+
+2003-07-09 12:39  kevin
+
+	* src/: polydNdSbase.cc, polydNdSbase.hpp: MakeCodon() no longer
+	  needs a PolySites*, various cleanup
+
+2003-07-07 09:55  kevin
+
+	* src/translateCoding.cc: new file
+
+2003-07-07 06:15  kevin
+
+	* src/polydNdSbase.cc: now outputs what the stop codon is when a
+	  stop codon is encountered
+
+2003-07-01 05:49  kevin
+
+	* src/: Makefile.am, Makefile.in: new program "Fexact"
+
+2003-07-01 05:48  kevin
+
+	* src/sharedPoly.cc: added -v option for verbose output
+
+2003-07-01 05:48  kevin
+
+	* src/polydNdSbase.hpp: added	bool XtractFullCodons; to arguments
+	  struct
+
+2003-07-01 05:47  kevin
+
+	* src/polydNdSbase.cc: -X and -T options added to parseargs,
+	  position of ambiguous pathways is now output
+
+2003-07-01 05:47  kevin
+
+	* src/polydNdS.cc: cleanup of output code
+
+2003-07-01 05:46  kevin
+
+	* src/extractCoding.cc: now deals with input of CDS intervals
+	  better
+
+2003-07-01 05:45  kevin
+
+	* src/compute_functions.cc: floats changed to doubles
+
+2003-07-01 05:45  kevin
+
+	* src/MKtest.cc: program now accepts -T to output tab-delimited
+	  table (not documented yet in man page)
+
+2003-07-01 05:44  kevin
+
+	* src/Fexact_main.cc: new file
+
+2003-06-18 09:07  kevin
+
+	* ChangeLog, configure, configure.in, debian/changelog: package
+	  version 0.4.8
+
+2003-06-18 09:04  kevin
+
+	* src/: MKtest.1, compute.1, polydNdS.1: updated manpages
+
+2003-06-18 08:54  kevin
+
+	* src/: polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp: massive
+	  bugfixes, diagnostic info now printed to stderr.
+
+2003-06-18 08:54  kevin
+
+	* src/: Makefile.am, Makefile.in: new source files:
+	  translateCoding.cc and extractCoding.cc
+
+2003-06-18 08:52  kevin
+
+	* src/MKtest.cc: cleanup
+
+2003-06-18 08:52  kevin
+
+	* src/extractCoding.cc: new program
+
+2003-06-18 08:51  kevin
+
+	* src/compute_functions.cc: now, positions of SNPs are along the
+	  alignment as it is input, rather than from the first ungapped
+	  position
+
+2003-06-07 13:25  kevin
+
+	* src/polydNdS.1: updated documentation
+
+2003-06-07 13:20  kevin
+
+	* src/: Makefile.in, tstvbias.cc: cleanup
+
+2003-06-07 12:45  kevin
+
+	* src/: HBKpermute.cc, Makefile.am, compute.cc,
+	  compute_functions.hpp, descPoly.cc, distance.cc, polyCommon.cc,
+	  polyCommon.hpp, polydNdS.1, rsq.cc, sharedPoly.cc, tstvbias.cc:
+	  fixed includes for non-GNU systems. portability to gcc 2.95. now
+	  use portability header getoptFix.h
+
+2003-06-07 12:44  kevin
+
+	* src/getoptFix.h: portability header for getopt
+
+2003-06-07 12:43  kevin
+
+	* src/: compute_functions.cc, gestimator.cc: changed an unsigned to
+	  an int to remove compiler warning
+
+2003-06-07 12:43  kevin
+
+	* src/: MKtest.cc, polydNdS.cc:  now optionally skips missing data
+	  using -S option from polydNdSbase.cc
+
+2003-06-07 12:42  kevin
+
+	* src/polydNdSbase.hpp: added skipMissing to parameters struct
+
+2003-06-07 12:42  kevin
+
+	* src/polydNdSbase.cc:	-I option now works. Added -S option to
+	  parseargs so that polydNdS and MKtest can optionally skip sites
+	  w/missing data. Added #include<algorithm>
+
+2003-06-05 06:26  kevin
+
+	* ChangeLog, configure, configure.in, debian/changelog: package
+	  version 0.4.7
+
+2003-06-03 14:19  kevin
+
+	* src/polydNdSbase.cc: fixed bug in InCoding(int site_index, const
+	  vector<int> &intervals).  The bug was that the value 1 was
+	  subtracted from each interval position.  This was incorrect
+	  because the intervals are already indexes.
+
+2003-06-03 11:58  kevin
+
+	* ChangeLog, configure, configure.in, debian/changelog,
+	  src/Makefile.in: package version 0.4.6
+
+2003-06-03 11:58  kevin
+
+	* src/Makefile.am: added manpages to source lists
+
+2003-06-03 11:56  kevin
+
+	* src/: descPoly.1, descPoly.cc, sharedPoly.1: added man pages
+
+2003-06-03 11:46  kevin
+
+	* src/: descPoly.cc, polyCommon.cc, polyCommon.hpp: new program
+	  added (descPoly)
+
+2003-06-03 08:51  kevin
+
+	* src/polydNdSbase.cc: Fixed bug in DetermineOnePoly(const
+	  PolyTable *poly_table, int codon_pos,int i) that mistakenly
+	  returned false for cases where there is only 1 SNP in the entire
+	  data set.
+
+2003-06-02 12:15  kevin
+
+	* src/polydNdS.cc: the previous "fix" for mis-assigned coding SNPs
+	  was incorrect.  This has now been fixed by using the InCoding()
+	  routine
+
+2003-06-02 10:26  kevin
+
+	* src/: Makefile.am, Makefile.in, compute_functions.cc,
+	  polydNdS.cc, polydNdSbase.cc: cleanup
+
+2003-06-02 08:20  kevin
+
+	* src/polydNdS.cc: fixed bug where sites that were skipped for some
+	  reason in the coding region could be mistakenly considered to be
+	  noncoding
+
+2003-05-23 12:43  kevin
+
+	* src/sharedPoly.cc: added try/catch block
+
+2003-05-23 12:32  kevin
+
+	* src/: Makefile.am, Makefile.in, sharedPoly.cc: added program
+	  "sharedPoly"
+
+2003-05-19 09:32  kevin
+
+	* configure, configure.in, debian/changelog: package 0.4.5
+
+2003-05-16 15:04  kevin
+
+	* src/compute_functions.cc: updated code comments
+
+2003-05-16 15:02  kevin
+
+	* src/compute_functions.cc: now, if there is no polymorphism in the
+	  data, the following statistics are output as NA: Tajima's D,
+	  Fu/Li statistics, Wall's statistics, Rmin, and Hudson's C
+
+2003-05-16 14:30  kevin
+
+	* src/: Makefile.am, Makefile.in: removed tajd.1 from man_MANS so
+	  that deb package can be built
+
+2003-05-16 14:14  kevin
+
+	* configure, configure.in, debian/changelog: package 0.4.4
+
+2003-05-16 14:02  kevin
+
+	* src/compute_functions.cc: now handles data with no seg sites
+	  properly with -p option (outputs NA for each statistic)
+
+2003-05-07 08:32  kevin
+
+	* src/g2.c: removed "adding 1 to everything" in the case of zero
+	  counts.  Just doesn't seem right to me...
+
+2003-05-07 08:31  kevin
+
+	* src/: Makefile.am, Makefile.in: removed silly programs (that are
+	  now replaced by msld and msstats packages anyways).  added
+	  manpage for MKtest
+
+2003-05-07 08:30  kevin
+
+	* src/g2.c: removed all numerical recipes code.
+
+2003-05-07 08:28  kevin
+
+	* src/MKtest.cc: halved number of loops over data structures.  now
+	  output chisquare and G-tests where possible
+
+2003-05-07 08:27  kevin
+
+	* src/MKtest.1: added manpage
+
+2003-05-07 08:26  kevin
+
+	* src/: chisq.c, chisq.h: added Yate's correction.  Simplified
+	  formula for calculation.
+
+2003-05-06 11:50  kevin
+
+	* src/polydNdS.cc: code cleanup
+
+2003-05-05 08:26  kevin
+
+	* configure, configure.in, debian/changelog: package 0.4.3
+
+2003-05-05 08:24  kevin
+
+	* src/: Makefile.am, Makefile.in: MKtest removed from list of
+	  programs to compile (not ready yet...)
+
+2003-05-05 08:12  kevin
+
+	* src/: polydNdSbase.cc, polydNdSbase.hpp: fixed bug where codon
+	  position of a mutation was incorrectly calculated. The bug was in
+	  GetCodonPos()
+
+2003-05-05 08:11  kevin
+
+	* src/polydNdS.cc: Pi is now output per site
+
+2003-05-05 08:11  kevin
+
+	* src/g2.c: replaced computation of p-value by Num. Rec. code with
+	  GSL routines
+
+2003-05-05 08:08  kevin
+
+	* src/chisq.c: [no log message]
+
+2003-05-05 08:08  kevin
+
+	* src/MKtest.cc: removed predicate functions (they didn't work :(
+	  ), now do calculations with explicit loops. Modified output
+	  format.
+
+2003-05-03 13:49  kevin
+
+	* src/: polydNdSbase.cc, polydNdSbase.hpp: fixed 2 bugs.  The first
+	  resulted in mis-assigning the position in a codon of mutations at
+	  positions 1 or 2 (position 3 was fine).  the second was a pass by
+	  value of a vector instead of by reference.
+
+2003-05-03 08:42  kevin
+
+	* src/: ctest.h, fexact.c: added source files for Fisher's exact
+	  test, from the R project (http://www.r-project.org)
+
+2003-05-03 08:41  kevin
+
+	* src/: HBKpermute.cc, MKtest.cc, Makefile.am, Makefile.in,
+	  chisq.c, chisq.h, chud.cc, compute.cc, compute_functions.cc,
+	  compute_functions.hpp, distance.cc, dists.cc, g2.c, g2.h,
+	  gestimator.cc, polydNdS.cc, polydNdSbase.cc, polydNdSbase.hpp,
+	  rsq.cc, tajd.cc, tstvbias.cc, tstvbias.hpp: reformatted files
+	  with astyle. Added code for MK tests, which required pulling code
+	  from polydNdS and putting it in polydNdSbase so the 2 programs
+	  could share
+
+2003-04-04 09:36  kevin
+
+	* src/gestimator.cc: removed out old (commented-out) code
+
+2003-04-04 09:35  kevin
+
+	* src/gestimator.cc: only #include "Fasta.hpp" on non-GNU compilers
+
+2003-04-04 08:55  kevin
+
+	* debian/changelog: updated package version #
+
+2003-04-04 08:54  kevin
+
+	* configure, configure.in: package 0.4.2
+
+2003-04-04 08:53  kevin
+
+	* src/rsq.cc: changed an #include directive to allow compilation on
+	  systems without BOOST installed
+
+2003-04-03 14:12  kevin
+
+	* src/: HBKpermute.cc, compute_functions.cc, distance.cc,
+	  gestimator.cc, polydNdS.cc, rsq.cc: upgraded to take advantage of
+	  explicit instantiations in libsequence
+
+2003-04-03 08:52  kevin
+
+	* debian/changelog: updated package version #
+
+2003-04-03 08:52  kevin
+
+	* configure: [no log message]
+
+2003-04-03 08:37  kevin
+
+	* configure.in: updated package version to 0.4.1
+
+2003-04-03 08:37  kevin
+
+	* src/polydNdS.cc: updated to new version of
+	  Sequence::Aligment::Trim( const vector<T>& , const vector<int> &)
+
+2003-04-02 08:45  kevin
+
+	* src/compute_functions.cc: added Wall's statistics to output
+
+2003-04-02 08:45  kevin
+
+	* Makefile.in: [no log message]
+
+2003-04-01 09:23  kevin
+
+	* Makefile.am, debian/README.debian, debian/analysis-doc.files,
+	  debian/changelog, debian/control, debian/copyright,
+	  debian/crontab.ex, debian/dirs, debian/diversions.ex,
+	  debian/files, debian/inetd.conf.ex, debian/info.ex,
+	  debian/init.d.ex, debian/manpage.1.ex, debian/menu.ex,
+	  debian/rules, debian/substvars, debian/watch.ex: added debian
+	  build dir
+
+2003-03-24 08:05  kevin
+
+	* src/: HBKpermute.cc, chud.cc, compute_functions.hpp, distance.cc,
+	  dists.cc, gestimator.cc, polydNdS.cc, tajd.cc: added "using
+	  namespace Sequence"
+
+2003-03-21 09:29  kevin
+
+	* configure, configure.in: package 0.4.0
+
+2003-03-21 09:28  kevin
+
+	* src/: tstvbias.cc, tstvbias.hpp: updated to use
+	  Sequence::stateCounter class
+
+2003-03-21 09:28  kevin
+
+	* src/polydNdS.1: updated man page
+
+2003-03-21 09:27  kevin
+
+	* src/polydNdS.cc: made reading in of file cleaner
+
+2003-03-21 09:27  kevin
+
+	* src/: Makefile.am, Makefile.in: added HBKpermute
+
+2003-03-21 09:27  kevin
+
+	* src/: HBKpermute.1, HBKpermute.cc: added program to package
+
+2003-03-15 10:11  kevin
+
+	* src/compute_functions.cc: fixed error in output (forgot a tab in
+	  outputting # Singletons)
+
+2003-03-14 12:52  kevin
+
+	* src/: HBKpermute.cc, chud.cc, dists.cc, gestimator.cc,
+	  polydNdS.cc, tajd.cc: update to PolySNP and PolySIM classes
+
+2003-03-14 10:48  kevin
+
+	* src/rsq.cc: updated from Poly to PolySNP
+
+2003-03-13 15:09  kevin
+
+	* src/: compute_functions.cc, compute_functions.hpp: upgraded to
+	  new PolySNP and PolySIM classes
+
+2003-02-26 14:22  kevin
+
+	* src/rsq.cc: made friendlier if no infile specified
+
+2003-02-26 14:20  kevin
+
+	* src/polydNdS.cc: updated to new range operation version of
+	  Sequence::Translate()
+
+2003-02-21 11:04  kevin
+
+	* src/: compute_functions.cc, rsq.cc: package version 1.1.9--no
+	  longer convert to binary data when analyzing Rm or linkage
+	  disequilibrium
+
+2003-02-21 11:03  kevin
+
+	* configure: package version 1.1.9
+
+2003-02-21 11:02  kevin
+
+	* configure.in: package version 0.3.9
+
+2003-02-17 12:13  kevin
+
+	* src/compute_functions.cc: cleanup
+
+2003-02-17 12:11  kevin
+
+	* src/compute_functions.cc: fixed bug in read() where I allocated 1
+	  to many characters to the outgroup string, resulting in bad
+	  behavior
+
+2003-01-20 08:19  kevin
+
+	* configure, configure.in: package 0.3.8 -- works with g++ 3.1 on
+	  OS X
+
+2003-01-18 12:46  kevin
+
+	* src/: chud.cc, compute.cc, distance.cc, dists.cc, gestimator.cc,
+	  polydNdS.cc, rsq.cc, tajd.cc: no longer includes getopt.h on OS X
+	  systems
+
+2003-01-18 10:14  kevin
+
+	* ChangeLog: updated ChangeLog :)
+
+2003-01-18 10:14  kevin
+
+	* src/compute_functions.cc: added some missing #include
+
+2003-01-14 13:48  kevin
+
+	* src/dists.cc: fixed typos...
+
+2003-01-14 13:47  kevin
+
+	* src/rsq.cc: updated to new version of Numerology::ProductMoment
+
+2003-01-14 09:55  kevin
+
+	* src/rsq.cc: added a typedef
+
+2003-01-13 13:26  kevin
+
+	* src/tajd.cc: added more info to output:expectsion, critical
+	  values, etc.
+
+2003-01-13 12:22  kevin
+
+	* configure, configure.in: package version 0.3.6
+
+2003-01-13 12:21  kevin
+
+	* src/: Makefile.am, Makefile.in, crit.c, crit.h, dists.cc, rsq.cc,
+	  tajd.cc: updated to new routines in my cpptools package--results
+	  in faster code!
+
+2003-01-10 11:14  kevin
+
+	* src/dists.cc: removed unecessary cout of sorted vector
+
+2003-01-10 11:14  kevin
+
+	* src/dists.cc: removed some unecessary variables
+
+2003-01-04 17:41  kevin
+
+	* src/: Makefile.am, Makefile.in, compute_functions.cc, crit.c,
+	  num_comparisons.c, num_comparisons.h: removed num_comparisons.*
+
+2003-01-02 18:45  kevin
+
+	* src/gestimator.cc: removed out of data comments
+
+2002-11-25 09:59  kevin
+
+	* configure.in: package version 1.0.8
+
+2002-11-25 09:55  kevin
+
+	* src/rsq.cc: added D' back to output, -c option now works
+
+2002-11-24 10:36  kevin
+
+	* src/: Makefile.am, Makefile.in, chud.cc, rsq.cc: removed
+	  HBKPermute program, removed D' from rsq
+
+2002-11-24 10:36  kevin
+
+	* configure, configure.in: package version 0.3.3
+
+2002-10-26 10:32  kevin
+
+	* src/: HBKpermute.cc, Makefile.am, Makefile.in, Permutations.cc,
+	  Permutations.hpp: made changes to HBKPermute: fixed bug in
+	  calculation of Fst (I think), and moved contents of
+	  Permutations.* to HBKPermute.cc
+
+2002-10-26 10:31  kevin
+
+	* configure, configure.in: updated package version to 0.3.2
+
+2002-10-22 13:29  kevin
+
+	* src/polydNdS.cc: various cleanups
+
+2002-09-20 11:34  kevin
+
+	* src/tajd.cc: cleanup
+
+2002-09-20 11:33  kevin
+
+	* Makefile.in, aclocal.m4: [no log message]
+
+2002-09-19 18:06  kevin
+
+	* Makefile.in, aclocal.m4, configure, configure.in,
+	  src/Makefile.am, src/Makefile.in, src/dists.cc, src/tajd.cc:
+	  removed dependency on gsl
+
+2002-09-13 09:26  kevin
+
+	* src/: Makefile.am, Makefile.in: removed HBKPermute as a target
+	  until I fix the bugs
+
+2002-09-05 11:40  kevin
+
+	* src/: compute.1, polydNdS.1: documented new CLI options
+
+2002-09-05 11:35  kevin
+
+	* src/compute_functions.cc: added checks for 0 in output routine
+
+2002-09-05 11:32  kevin
+
+	* src/compute_functions.cc: -P now works with -h
+
+2002-09-05 11:32  kevin
+
+	* src/compute.cc: when using -P, -s is now implied
+
+2002-09-05 11:28  kevin
+
+	* src/compute_functions.hpp: removed output2 prototype
+
+2002-09-05 11:28  kevin
+
+	* src/compute_functions.cc: removed hack for Hudson2001 format--it
+	  all works as it should now
+
+2002-09-05 10:10  kevin
+
+	* src/compute_functions.cc: added a hack so that hudson2001 format
+	  is supported.  Will not count Rmin :(.
+
+2002-09-05 09:25  kevin
+
+	* src/polydNdS.cc: cleanup up language in output to prevent
+	  ambiguity. also fixed some bugs regarding conssistency of index
+	  vs. position (a consistenly annoying problem with this program).
+
+2002-09-04 10:02  kevin
+
+	* src/: compute.cc, compute_functions.hpp: added option to use poly
+	  table as input
+
+2002-09-04 09:59  kevin
+
+	* src/polydNdS.cc: fixed typo in comment
+
+2002-09-04 09:32  kevin
+
+	* src/polydNdS.cc: added analysis and output of table for silent
+	  +intron/flanking positions
+
+2002-09-04 08:45  kevin
+
+	* src/polydNdS.cc: made modifications so that positions of all
+	  polymorphism tables are correct.  To date, the positions of
+	  intron+flanking is not correct
+
+2002-09-03 14:50  kevin
+
+	* src/polydNdS.cc: added analysis of all silent ( = synonymous +
+	  intron/flanking ) polymorphisms
+
+2002-08-15 09:14  kevin
+
+	* src/: Makefile.in, compute.cc, compute_functions.cc: fixed
+	  portability problems to Sun systems
+
+2002-08-14 11:38  kevin
+
+	* src/Makefile.am: fixed source lists so that make dist works
+
+2002-08-13 09:25  kevin
+
+	* src/rsq.cc: update to new "generic algorithm" interface for
+	  permutation tests
+
+2002-08-12 11:05  kevin
+
+	* src/rsq.cc: now use auto_ptr for Hudson2001 object for exception
+	  safety (although prog exits if exceptions are caught, its nice to
+	  be clean).
+
+2002-08-12 09:55  kevin
+
+	* src/Permutations.cc: added using namespace std; for g++-3.1's
+	  benefit..
+
+2002-08-12 09:52  kevin
+
+	* src/int_handler.cc: added std::foo to make g++-3.1 happy
+
+2002-08-12 07:25  kevin
+
+	* src/: HBKpermute.cc, compute_functions.cc, compute_functions.hpp,
+	  distance.cc, gestimator.cc, polydNdS.cc, rsq.cc: update to
+	  changes in libsequence re: vectors
+
+2002-08-06 09:45  kevin
+
+	* src/: Makefile.am, Makefile.in, rsq.1, rsq.cc: updated to use
+	  namespace Numerology
+
+2002-08-05 08:25  kevin
+
+	* src/rsq.cc: changed signficance testing code to use array
+	  versions of templates instead of vectors
+
+2002-08-01 12:53  kevin
+
+	* src/: rsq.1, rsq.cc: update to allow frequency filters
+
+2002-08-01 09:28  kevin
+
+	* aclocal.m4, configure, configure.in, src/Makefile.am,
+	  src/Makefile.in, src/compute_functions.cc: added --enable-debug
+	  argument to configure
+
+2002-07-29 13:34  kevin
+
+	* src/: Makefile.am, Makefile.in, polyslide.cc: removed
+	  polyslide.cc
+
+2002-07-25 11:37  kevin
+
+	* src/: HBKpermute.cc, Permutations.cc, Permutations.h,
+	  Permutations.hpp, chud.cc, compute.cc, compute_functions.cc,
+	  compute_functions.h, compute_functions.hpp, distance.cc,
+	  dists.cc, gestimator.cc, int_handler.cc, int_handler.h,
+	  int_handler.hpp, polydNdS.cc, polyslide.cc, rsq.cc, tajd.cc,
+	  tstvbias.cc, tstvbias.h, tstvbias.hpp: .h to .hpp
+
+2002-07-24 11:09  kevin
+
+	* src/: polydNdS.cc, polyslide.cc: update to name change of
+	  PolyData to PolyTable
+
+2002-07-24 07:02  kevin
+
+	* src/compute_functions.cc: fixed bug in estimating p-value for the
+	  Depaulis-Veuille H statistic
+
+2002-07-21 11:48  kevin
+
+	* src/: chud.cc, compute_functions.cc, dists.cc, tajd.cc: added
+	  using namespace std  where needed
+
+2002-07-18 06:15  kevin
+
+	* src/gestimator.cc: update to new libsequence conventions
+
+2002-07-17 07:15  kevin
+
+	* src/gestimator.cc: removed useless include of Translate.h
+
+2002-07-17 07:15  kevin
+
+	* src/polydNdS.cc: update to new Translate() machinery
+
+2002-07-15 09:30  kevin
+
+	* src/: num_comparisons.c, num_comparisons.h: added comments,
+	  removed #include dependency on GNU scientific library
+
+2002-07-15 09:29  kevin
+
+	* src/compute_functions.cc: got rid of "one true brace" formatting
+
+2002-07-15 09:21  kevin
+
+	* src/compute_functions.cc: removed comment about a bug that has
+	  been fixed
+
+2002-07-15 09:20  kevin
+
+	* src/: Makefile.am, Makefile.in, compute_functions.cc,
+	  compute_functions.h: added new file
+
+2002-07-15 09:20  kevin
+
+	* src/compute.cc: moved functionality to compute_functions.h/.cc
+
+2002-07-09 07:47  kevin
+
+	* src/Makefile.am: fixed portability problem
+
+2002-07-08 06:17  kevin
+
+	* src/: Makefile.am, Makefile.in, SimDataSimple.cc,
+	  SimDataSimple.h, compute.cc, ms_interface.cc, ms_interface.h,
+	  ms_structs.h, msfunc.c, msfunc.h, rand1.c, rand1.h, streec.c,
+	  streec.h: moved simulation engine to libsequence, modified
+	  Makefiles and compute.cc to reflect the move
+
+2002-07-04 16:16  kevin
+
+	* src/compute.cc: modified checking of dvh to use fabs()
+
+2002-07-04 16:12  kevin
+
+	* src/: Makefile.am, Makefile.in, compute.cc, ms_interface.cc,
+	  num_comparisons.c, rand1.c, crit.c: changed FLT_EPSILON to
+	  DBL_EPSILON
+
+2002-07-04 16:12  kevin
+
+	* Makefile.in: [no log message]
+
+2002-06-24 13:58  kevin
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, Makefile.in,
+	  NEWS, README, acinclude.m4, aclocal.m4, analysis.lsm.in,
+	  analysis.spec.in, config.guess, config.h.in, config.sub,
+	  configure, configure.in, install-sh, missing, mkinstalldirs,
+	  stamp-h.in, texinfo.tex, src/HBKpermute.1, src/HBKpermute.cc,
+	  src/Makefile.am, src/Makefile.in, src/Permutations.cc,
+	  src/Permutations.h, src/SimDataSimple.cc, src/SimDataSimple.h,
+	  src/analysis.1, src/chud.cc, src/compute.1, src/compute.cc,
+	  src/crit.c, src/crit.h, src/distance.cc, src/dists.cc,
+	  src/gestimator.1, src/gestimator.cc, src/getopt.c, src/getopt.h,
+	  src/getopt1.c, src/int_handler.cc, src/int_handler.h,
+	  src/kimura80.1, src/ms_interface.cc, src/ms_interface.h,
+	  src/ms_structs.h, src/msfunc.c, src/msfunc.h,
+	  src/num_comparisons.c, src/num_comparisons.h, src/polydNdS.1,
+	  src/polydNdS.cc, src/polyslide.cc, src/rand1.c, src/rand1.h,
+	  src/rsq.1, src/rsq.cc, src/streec.c, src/streec.h, src/tajd.1,
+	  src/tajd.cc, src/texinfo.tex, src/tstvbias.cc, src/tstvbias.h:
+	  Initial revision
+
+2002-06-24 13:58  kevin
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, Makefile.in,
+	  NEWS, README, acinclude.m4, aclocal.m4, analysis.lsm.in,
+	  analysis.spec.in, config.guess, config.h.in, config.sub,
+	  configure, configure.in, install-sh, missing, mkinstalldirs,
+	  stamp-h.in, texinfo.tex, src/HBKpermute.1, src/HBKpermute.cc,
+	  src/Makefile.am, src/Makefile.in, src/Permutations.cc,
+	  src/Permutations.h, src/SimDataSimple.cc, src/SimDataSimple.h,
+	  src/analysis.1, src/chud.cc, src/compute.1, src/compute.cc,
+	  src/crit.c, src/crit.h, src/distance.cc, src/dists.cc,
+	  src/gestimator.1, src/gestimator.cc, src/getopt.c, src/getopt.h,
+	  src/getopt1.c, src/int_handler.cc, src/int_handler.h,
+	  src/kimura80.1, src/ms_interface.cc, src/ms_interface.h,
+	  src/ms_structs.h, src/msfunc.c, src/msfunc.h,
+	  src/num_comparisons.c, src/num_comparisons.h, src/polydNdS.1,
+	  src/polydNdS.cc, src/polyslide.cc, src/rand1.c, src/rand1.h,
+	  src/rsq.1, src/rsq.cc, src/streec.c, src/streec.h, src/tajd.1,
+	  src/tajd.cc, src/texinfo.tex, src/tstvbias.cc, src/tstvbias.h:
+	  initial commit of version 0.2.9
+

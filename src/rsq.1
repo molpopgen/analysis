@@ -1,0 +1,96 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH RSQ 1 "April 3, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+rsq \- a program to facilitate the analysis linkage disequilibrium distance as a function of distance between SNPs
+.SH SYNOPSIS
+.B rsq -i <infile> 
+.RI [ options ]
+.SH DESCRIPTION
+\fBrsq\fP calculates several measures of LD (r^2,D, and D'), and outputs them along with the distance between the SNPs.  The output file can be processed using another program, such as R (http://www.r-project.org) to make a plot of LD vs. distance.  Note that this programs assumes that there is not outgroup present in the data
+.PP
+.SH OPTIONS
+\fBrsq\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze
+.TP
+.B \-h <infile>
+specify and outfile in spreadsheet format to analyze.  The format of the spreadsheet is:
+.TP
+nseqs nsites
+.TP
+site positions
+.TP
+outgroup chars
+.TP
+name chars
+.TP
+EXAMPLE:
+.TP
+11      9
+.TP
+46      113     164     631     646     762     872     886     969     
+.TP
+anc ?   ?       ?       ?       ?       ?       ?       ?       ?       
+.TP
+bipCook.inv     T       C       C       C       A       A       A       A       T
+.TP
+bipimpala.inv   T       C       C       C       G       A       A       A       A
+.TP
+bipLima.inv     T       C       A       A       G       A       A       A       T
+.TP
+bipMorrow.inv   T       C       C       A       G       T       T       G       T
+.TP
+bipNewGuinea.inv        T       C       A       C       G       A       A       A       T
+.TP
+bipSeych.inv    T       C       A       A       G       A       A       A       T
+.TP
+bipTamia.inv    A       A       A       C       G       T       T       G       T
+.TP
+bipTrinidad.inv T       C       A       A       G       A       A       A       T
+.TP
+bipW66.inv      T       C       C       C       G       T       T       G       T
+.TP
+bipW74.inv      T       C       C       C       G       T       T       G       T
+.TP
+bipW75.inv      T       C       C       A       G       T       T       G       T
+.TP
+
+In this case, the ?'s specify that the outgroup was not typed.  The N character can be used instead of the ?.
+.TP
+.B \-c <mincount>
+to be counted in a comparison, a variant at a site must be present at least mincount times
+.TP
+.B \-t <nperms>
+perform a permutation test of the correlation of distance and disequilibrium.  <nperms> is the number of times to permute the positions vector
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <k-thornton@uchicago.edu>

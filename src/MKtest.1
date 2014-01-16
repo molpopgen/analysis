@@ -1,0 +1,66 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH MKTEST 1 "May 6, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+MKtest \- a program to calculate nucleotide diversity at silent and replacement sites
+.SH SYNOPSIS
+.B MKtest -i <infile> -I <nint> <i j k l ...> -n <samplesize1>
+.RI [ options ]
+.SH DESCRIPTION
+\fBMKtest\fP performs the McDonald-Kreitman test of neutral evolution on full sequence data. The p-value of the test is computed by a Fisher's exact test. The routine for the exact test was lifted from code from the R project (http://www.r-project.org), which in turn is a port of the Fortran FEXACT routine. Where possible, results for G-tests and Chi-squared tests of independence are also output.
+.PP
+.SH OPTIONS
+\fBMKtest\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze
+.TP
+.B \-I <nint> <i j  kj l ...>
+specify nint, which is the number of exons you want to analyze. (I.E., nint is the number of coordinates along the sequence you need to specify to describe the beginning and end of every exon).  The <i j k l ...> are the coordinates of the start and stop of every exon (please input them in order!!!).  If nint is not an even number, and then if the number of positions specified does not equal nint, the program exits with an error message.  NOTE: label the exon coordinates starting from 1 (i.e. the first UNGAPPED position in the aligned data is position 1).
+.TP
+.B \-F <posfile>
+specify a file name containing the options that you would normally pass to \-I
+.TP
+.B \-C <codon_start>
+If your exons don't start at a first position, you can tell \fBMKtest\fP what the codon position is of the first exon position. Valid values are 1,2, and 3.
+.TP
+.B \-E <codon_end>
+If your exons don't end at a third position, you can tell \fBMKtest\fP what the codon position is of the last exon position. Valid values are 1,2, and 3.
+.B \-N
+skip all sites with missing data (the 'N' character).
+.TP
+.B \-n
+the number of sequences in the first sample in the data file. For example, if your file contains 20 sequences, 10 from 2 different species, then pass \-n 10 as an argument
+.TP
+.B \-A
+Provide an approximate treatment of codons in the following cases. First, when there are two substitutions in a codon, and the pathways cannot be unambiguously assigned as silent or replacement, then assume the most conservative pathway (i.e. the one going through at least 1 silent change).  Second, when there is a fixed difference between partitions of the data, and all 3 positions are substituted, assign it as a fixed amino acid change if the codons encode different amino acids, else call it a fixed synonymous change.
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <k-thornton@uchicago.edu>

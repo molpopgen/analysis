@@ -1,0 +1,100 @@
+dnl Process this file with autoconf to produce a configure script.
+
+AC_INIT(src/compute.cc)
+dnl Every other copy of the package version number gets its value from here
+AM_INIT_AUTOMAKE(analysis, 0.8.4)
+
+AC_ARG_ENABLE(debug,
+[  --enable-debug    Turn on debugging],
+[case "${enableval}" in
+  yes) debug=true ;;
+  no)  debug=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+esac],[debug=false])
+
+AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
+
+dnl create a config.h file (Automake will add -DHAVE_CONFIG_H)
+AM_CONFIG_HEADER(config.h)
+
+AC_SUBST(VERSION)
+
+ISODATE=`date +%Y-%m-%d`
+AC_SUBST(ISODATE)
+
+AC_CANONICAL_HOST
+
+dnl Checks for programs.
+AC_PROG_INSTALL
+AC_PROG_CC
+AC_PROG_CXX
+
+#AM_PATH_GSL(>=1.1,,AC_MSG_ERROR([Cannot find the correct version of the GNU Scientific Library.  See http://sources.redhat.com/gsl]))
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(unistd.h sys/param.h sys/time.h time.h sys/mkdev.h sys/sysmacros.h string.h memory.h fcntl.h dirent.h sys/ndir.h ndir.h alloca.h locale.h)
+
+AC_LANG([C++])
+dnl Check for libsequence headers
+AC_CHECK_HEADER(Sequence/Seq.hpp,,[AC_MSG_ERROR([Header Sequence/Seq.hpp not found, please install libsequence (http://www.molpopgen.org)])])
+AC_CHECK_HEADER(Sequence/Coalescent/Coalescent.hpp,,[AC_MSG_ERROR([Header Sequence/Coalescent/Coalescent.hpp not found, please install a version of libsequence >= 1.5.4 (http://www.molpopgen.org)])])
+AC_CHECK_HEADER(Sequence/Snn.hpp,,[AC_MSG_ERROR([Header Sequence/Snn.hpp not found, please install a version of libsequence >= 1.6.3 (http://www.molpopgen.org)])])
+
+dnl check 1: <strstream> vs. the standard header <sstream>
+AC_CHECK_HEADER(strstream,STRSTREAM="true")
+AC_CHECK_HEADER(sstream,SSTREAM="true")
+AM_CONDITIONAL(HAVE_STRSTREAM, test x$STRSTREAM = xtrue)
+AM_CONDITIONAL(HAVE_SSTREAM, test x$SSTREAM = xtrue)
+
+dnl Check for headers for numeric precision stuff
+AC_CHECK_HEADER(limits,LIMITS="true")
+AC_CHECK_HEADER(cfloat,CFLOAT="true")
+AM_CONDITIONAL(HAVE_LIMITS,test x$LIMITS = xtrue)
+AM_CONDITIONAL(HAVE_CFLOAT,test x$CFLOAT = xtrue)
+
+dnl Check for BOOST headers (templates in libsequence need them)
+AC_CHECK_HEADER(boost/type_traits.hpp, LIBSEQUENCE_USE_BOOST=1 , [AC_MSG_ERROR([boost::type_traits required - either install boost (see http://www.boost.org) or write a replacement])])
+AC_CHECK_HEADER(boost/utility.hpp, LIBSEQUENCE_USE_BOOST=1 , [AC_MSG_ERROR([boost::noncopyable required (boost/utility.hpp) - either install boost (see http://www.boost.org) or write a replacement])])
+AC_CHECK_HEADER(boost/static_assert.hpp, LIBSEQUENCE_USE_BOOST=1 , [AC_MSG_ERROR([BOOST_STATIC_ASSERT required - either install boost (see http://www.boost.org) or write a replacement])])
+AC_CHECK_HEADER(boost/tuple/tuple.hpp, LIBSEQUENCE_USE_BOOST=1 , [AC_MSG_ERROR([boost::tuple required - either install boost (see http://www.boost.org) or write a replacement])])
+
+dnl check for GNU Scientific Library headers
+GSL_HEADERS_FOUND="false"
+AC_CHECK_HEADER(gsl/gsl_sf_gamma.h,GSL_HEADERS_FOUND="true",)
+AC_CHECK_HEADER(gsl/gsl_cdf.h,GSL_HEADERS_FOUND="true",)
+AC_CHECK_HEADER(gsl/gsl_rng.h,GSL_HEADERS_FOUND="true",[AC_MSG_ERROR([gsl/gsl_rng.h required for compilation - please install GSL (www.gnu.org/software/gsl)])])
+AC_CHECK_HEADER(gsl/gsl_randist.h,GSL_HEADERS_FOUND="true",[AC_MSG_ERROR([gsl/gsl_rng.h required for compilation - please install GSL (www.gnu.org/software/gsl)])])
+AM_CONDITIONAL(HAVE_GSL_HEADERS,test x$GSL_HEADERS_FOUND = xtrue)
+AM_CONDITIONAL(HAVEGCC,test x$GCC = xyes)
+
+dnl check for zlib
+ZLIB_HEADERS_FOUND="false"
+AC_CHECK_HEADER(zlib.h,ZLIB_HEADERS_FOUND="true")
+AM_CONDITIONAL(HAVE_ZLIB_HEADERS,test x$ZLIB_HEADERS_FOUND = xtrue)
+
+dnl Checks for libraries.
+AC_CHECK_LIB(z,main,,[echo "zlib does not seem to be here";exit 1])
+
+dnl check for libsequence 
+AC_LANG_SAVE
+          AC_LANG_CPLUSPLUS
+          AC_REQUIRE_CPP
+          AC_CHECK_LIB(sequence, main,,[echo "libsequence does not seem to be here";exit 1])
+AC_LANG_RESTORE
+
+jm_CHECK_TYPE_STRUCT_UTIMBUF
+AC_HEADER_MAJOR
+AC_FUNC_ALLOCA
+AC_STRUCT_TM
+AC_STRUCT_ST_BLOCKS
+AC_FUNC_CLOSEDIR_VOID
+AC_CHECK_FUNCS(mkfifo)
+AC_CHECK_FUNC(mknod)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+
+dnl Checks for library functions.
+
+
+AC_OUTPUT(Makefile src/Makefile analysis.lsm analysis.spec)

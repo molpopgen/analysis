@@ -1,0 +1,55 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH GESTIMATOR 1 "April 3, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+gestimator \- The "GNU estimator" (pronounced guesstimator) is a program to calculate divergence between coding sequences
+.SH SYNOPSIS
+.B gestimator -i <infile> 
+.RI [ options ]
+.SH DESCRIPTION
+The primary function of \fBgestimator\fP calculates nonsynonymous (Ka) and synonymous (Ks) distances between DNA sequences, using Comeron's method (Comeron, J. (1995) J. Molecular Evolution, 41: 1152-1159).  To keep all the output numeric, the value '999' may be reported if the divergence calculation cannot be made.  The program will do all pairwise comparisons for a file containing more than 2 sequences
+.PP
+.SH OPTIONS
+\fBgestimator\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze
+.TP
+.B \-v
+verbose output.  See Comeron's paper for an explanation of the variables.
+.TP
+.B \-m <maxhits>
+maxhits is an int referring to the maximum number of differences between two aligned codons to analyze.  Accepted values are 1,2, or 3.
+.TP
+.B -g 
+remove gaps from the whole aligment before doing any calculations.  The default behavior is to remove the gaps from each pairwise comparison.
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <k-thornton@uchicago.edu>

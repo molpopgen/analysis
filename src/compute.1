@@ -1,0 +1,76 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH COMPUTE 1 "April 3, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+compute \- a program to summarize a lot of molecular population genetic data at once.
+.SH SYNOPSIS
+.B compute -i <infile> 
+.RI [ options ]
+.SH DESCRIPTION
+\fBcompute\fP calculates a whole slew of numbers that molecular population genetics types might be interested in.  Most of the output consists of various estimators of theta (= 4Nu) and summaries of the site frequency spectrum (Tajima's D, Fay & Wu's H, Fu and Li stats).  It also outputs Hudson's C, a moment estimator of the population recombination rate.  The output is a simple tab-delimited table with a header, which can be loaded into a spreadsheet. The use of compute is quite flexible, allowing you to decide what sites to exclude, with one exception--sites with any state not in the set {A,G,C,T,N,-} are automatically excluded from the analysis.  You can exclude sites with more than two states or sites with missing data by selecting the appropriate command-line options.
+.PP
+.SH OPTIONS
+\fBcompute\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze.  Formally, this option takes a pattern used by glob() (see man 3 glob) to find out what the infiles are.  This can be used to process a lot of files at once.  For example, \fBcompute -i '*.fasta'\fP will analyze all files with the .fasta extension in the current directory.  Note that the pattern is in single quotes in this case, to prevent the shell from expanding the wild-card character.
+.TP
+.B \-h <infile>
+specify an infile in the "Hudson2001" SNP table format.  Note that this format makes the -O option described below redundant, since the presence on an outgroup is obvious from the data file
+.TP
+.B \-o <outfile>
+specify and outfile to write output to.  Otherwise, it prints to stdout
+.TP
+.B \-O <outgroup>
+<outgroup> is an int specifying which sequence in the data file is the ougroup. (start counting from 1)
+.TP
+.B \-n 
+where appropriate, use the number of segregating sites in all calculations (rather than the default, which is to use the inferred number of mutations).
+.TP
+.B \-s
+suppress output of header information
+.TP
+.B \-P
+print out just a polymorphism table for the data, and then exit
+.TP
+.B \-b
+only analyze bi-allelic sites (this means 2 and only 2 character states present, including the outgroup)
+.TP
+.B \-N
+only analyze segregating sites that contain no missing data. (i.e., exclude all sites containing the character N.)
+.TP
+.B \-p
+calculate the probabilities of haplotype number, haplotype diversity, and several summary statistic using coalescent simulation.  The probabilities are estimated from 10,000 random genealogies assuming no recombination.  The sample size in the simulations is the sample size of the ingroup in the data file.  By default, the simulation uses the "fixed segregating sites" method (Hudson 1993 "The how and why of generating gene genealogies" in Takahata and Clark, eds. "Mechanisms of Molecular Evolution", published by Sinauer Assosciates), fixing the number of polymorphisms on each genealogy to the number of mutations inferred from the data.  However, if the data are processed with the \-n option, the simulations use the number of segregating sites rather than the number of mutations
+.TP
+.B \-t
+when using the \fB\-p\fP option, this flag tells \fBcompute\fP to use Watterson's Theta instead of the number of mutations/segregating sites in the coalescent simulation
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <k-thornton@uchicago.edu>

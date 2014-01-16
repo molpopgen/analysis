@@ -1,0 +1,57 @@
+.\"                              hey, Emacs:   -*- nroff -*-
+.\" analysis is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; see the file COPYING.  If not, write to
+.\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH HBKPERMUTE 1 "April 3, 2002"
+.\" Please update the above date whenever this man page is modified.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins (default)
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+HBKpermute \- a program to perform the permutation tests for population substructure described by Hudson, Boos, and Kaplan (1992) Mol. Biol. Evol. 9:138-151. 
+.SH SYNOPSIS
+.B GSL_RNG_SEED=<seed> HBKpermute -i <infile> -c <config>
+.RI [ options ]
+.SH DESCRIPTION
+\fBHBKpermute\fP performs a test for population substructure by permuting the population assigments of the sequences in a datafile and calculating a statistic representing the degree of structure observed in the data.
+.PP
+.SH OPTIONS
+\fBHBKpermute\fP accepts the following options:
+.TP
+.B \-i <infile>
+specify a file containing aligned sequences in FASTA format to analyze
+.TP
+.B \-c <npop> <config>
+<config> is a list of numbers representing the sample sizes in each population in the infile, in the order they appear in the infile.
+.TP
+.B \-O <outgroup>
+<outgroup> is the index (i.e., counting from zero) of the outgroup sequence in the data, if present
+.TP
+.B \-n <nperms>
+number of permutations to run
+.TP
+.B \-s weight populations by sample size, otherwise they will be weighted equally
+.\" .SH "SEE ALSO"
+.\" .BR foo (1), 
+.\" .BR bar (1).
+.SH AUTHOR
+Kevin Thornton <k-thornton@uchicago.edu>

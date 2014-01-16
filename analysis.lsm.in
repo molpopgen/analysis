@@ -1,0 +1,21 @@
+Begin3
+Title:		analysis
+Version:	@VERSION@
+Entered-date:	@ISODATE@
+Description:	various fun things
+		@configure_input@
+		Please edit analysis.lsm.in to fix the Keywords and
+		Primary-site entries, add several more lines of
+		description here if appropriate, and to delete these
+		instructions.
+Keywords:	[substitute your keywords here]
+Author: 	kevin@krthornt.uchicago.edu (Kevin Thornton)
+Maintained-by:	kevin@krthornt.uchicago.edu (Kevin Thornton)
+Primary-site:	metlab.unc.edu pub/Linux/apps/some/directory
+		31k analysis-@VERSION@.tar.gz
+		500  analysis.lsm
+Alternate-site: 
+Original-site:  
+Platforms:      
+Copying-policy:	GNU copyleft
+End
