@@ -4,14 +4,7 @@
 #include <fstream>
 #include <cctype>
 #include <stdexcept>
-
-#if defined(HAVE_SSTREAM)
 #include <sstream>
-#elif defined(HAVE_STRSTREAM)
-#include <strstream>
-#else
-#error
-#endif
 #include <getopt.h>
 
 //using declarations are given explicitly here because the code 
@@ -22,13 +15,9 @@ using std::string;
 using std::cerr;
 using std::endl;
 using std::ifstream;
-#if defined(HAVE_SSTREAM)
+
+
 typedef std::ostringstream _ostr;
-#elif defined(HAVE_STRSTREAM)
-typedef std::ostrstream _ostr;
-#else
-#error
-#endif
 
 bool InCoding(int site_index, const vector<int> &intervals)
 {

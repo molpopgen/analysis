@@ -49,23 +49,23 @@ Fexact_SOURCES=Fexact_main.cc fexact.c ctest.h
 snntest_SOURCES=snntest.cc #getopt.c getopt1.c getopt.h getoptFix.h
 
 
-if DEBUG
-OTHERFLAGS = -g
-else
-OTHERFLAGS = -DNDEBUG -O2
-endif
+# if DEBUG
+# OTHERFLAGS = -g
+# else
+# OTHERFLAGS = -DNDEBUG -O2
+# endif
 
-if HAVE_LIMITS
-LIMITS= -DHAVE_LIMITS
-else
-LIMITS =
-endif
+# if HAVE_LIMITS
+# LIMITS= -DHAVE_LIMITS
+# else
+# LIMITS =
+# endif
 
-if HAVE_CFLOAT
-CFLOAT= -DHAVE_CFLOAT
-else
-CFLOAT =
-endif
+# if HAVE_CFLOAT
+# CFLOAT= -DHAVE_CFLOAT
+# else
+# CFLOAT =
+# endif
 
 if HAVE_GSL_HEADERS
 MKtest_LDADD=-lm -lgsl -lgslcblas
@@ -77,19 +77,19 @@ else
 GSL=
 endif
 
-polydNdS_LDADD=-lboost_regex
+#polydNdS_LDADD=-lboost_regex
 
-if HAVE_STRSTREAM
-STRSTREAM = -DHAVE_STRSTREAM
-else
-STRSTREAM =
-endif
+# if HAVE_STRSTREAM
+# STRSTREAM = -DHAVE_STRSTREAM
+# else
+# STRSTREAM =
+# endif
 
-if HAVE_SSTREAM
-SSTREAM = -DHAVE_SSTREAM
-else
-SSTREAM =
-endif
+# if HAVE_SSTREAM
+# SSTREAM = -DHAVE_SSTREAM
+# else
+# SSTREAM =
+# endif
 
 #if HAVEGCC
 #STD=-std=c99
@@ -97,8 +97,8 @@ endif
 #STD=
 #endif 
 
-CXXFLAGS= $(OTHERFLAGS)  $(STRSTREAM) $(SSTREAM) $(LIMITS) $(CFLOAT) $(GSL) -Wall -I$(includedir) 
-CFLAGS= $(STD) $(OTHERFLAGS) -Wall -I$(includedir) $(GSL) 
+AM_CXXFLAGS= $(OTHERFLAGS)  $(STRSTREAM) $(SSTREAM) $(LIMITS) $(CFLOAT) $(GSL) -Wall -I$(includedir) 
+AM_CFLAGS= $(STD) $(OTHERFLAGS) -Wall -I$(includedir) $(GSL) 
 CLINK= -shared-libgcc
 
 

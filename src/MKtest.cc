@@ -12,7 +12,7 @@
 #include <ieeefp.h>
 #endif
 
-#include <boost/tuple/tuple.hpp>
+#include <tuple>
 
 //libsequence stuff
 #if defined(__GNUG__) && __GNUC__ >= 3
@@ -33,10 +33,6 @@
 using namespace std;
 using namespace Sequence;
 using namespace Alignment;
-
-using boost::tuple;
-using boost::get;
-using boost::make_tuple;
 
 enum {FIXEDA=0,FIXEDS,POLYA,POLYS};
 

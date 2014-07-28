@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <cmath>
+#include <ctime>
 #include <Sequence/SimpleSNP.hpp>
 #include <Sequence/PolySites.hpp>
 #include <Sequence/PolySNP.hpp>
@@ -15,10 +16,6 @@
 #include <Sequence/Recombination.hpp>
 #include <getopt.h>
 #include <limits>
-
-#include <gsl/gsl_rng.h>
-#include <gsl/gsl_randist.h>
-#include <boost/bind.hpp>
 
 using namespace std;
 using namespace Sequence;
@@ -148,7 +145,9 @@ main (int argc, char *argv[])
   vector<double> LDSTATS(6);
   vector < vector<double> > diseq_vals;// =P->Disequilibrium(mincount,max_marker_distance);
   vector<double> distance,rsq,Dprime;
-  gsl_rng * r = gsl_rng_alloc (gsl_rng_taus);
+
+  std::mt19937 generator(std::time(0));
+
   cout << "sitei\tsitej\trsq\tD\tDprime\n";
   bool maintest=true;
   //while( Recombination::Disequilibrium(p,LDSTATS,&i,&j,false,0,mincount,max_marker_distance) )
@@ -180,23 +179,23 @@ main (int argc, char *argv[])
       double obs = ProductMoment()(distance.begin(),distance.end(),rsq.begin());
       double p = (obs > 0) ? PermuteCorrelation(distance.begin(),distance.end(),rsq.begin(),
 						ProductMoment(),std::greater_equal<double>(),
-						boost::bind(gsl_rng_uniform,r),
+						generator,
 						nperms) :
 	PermuteCorrelation(distance.begin(),distance.end(),rsq.begin(),
 			   ProductMoment(),std::less_equal<double>(),
-			   boost::bind(gsl_rng_uniform,r),
+			   generator,
 			   nperms);
 
       cout <<"#Product moment correlation between distance and r^2 is " << obs;
       cout << ", p = " << p << '\n';
       obs = ProductMoment()(distance.begin(),distance.end(),Dprime.begin());
       p = (obs > 0) ? PermuteCorrelation(distance.begin(),distance.end(),Dprime.begin(),
-						ProductMoment(),std::greater_equal<double>(),
-						boost::bind(gsl_rng_uniform,r),
-						nperms) :
+					 ProductMoment(),std::greater_equal<double>(),
+					 generator,
+					 nperms) :
 	PermuteCorrelation(distance.begin(),distance.end(),Dprime.begin(),
 			   ProductMoment(),std::less_equal<double>(),
-			   boost::bind(gsl_rng_uniform,r),
+			   generator,
 			   nperms);
 
       cout <<"#Product moment correlation between distance and D' is " << obs

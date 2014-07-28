@@ -13,32 +13,17 @@
 #include <Sequence/PolySIM.hpp>
 #include <Sequence/SeqExceptions.hpp>
 #include <Sequence/Coalescent/Coalescent.hpp>
-#include <Sequence/RNG/gsl_rng_wrappers.hpp>
 #include <Sequence/SeqConstants.hpp>
 
 //standard/unix headers
 #include <iostream>
-#if defined(HAVE_SSTREAM)
 #include <sstream>
-#elif defined(HAVE_STRSTREAM)
-#include <strstream>
-#else
-#error
-#endif
 #include <fstream>
 #include <exception>
-#if defined (HAVE_LIMITS)
 #include <limits>
-#elif defined(HAVE_CFLOAT)
-#include <cfloat>
-#else
-#include <float.h>
-#endif
-#if defined (__SVR4) && defined (__sun)
-#include <ieeefp.h>
-#endif
 
 #include <gsl/gsl_rng.h>
+#include <gsl/gsl_randist.h>
 
 using namespace std;
 using namespace Sequence;
@@ -473,23 +458,14 @@ struct pvalsImpl
     : ptajd(NA), pfld(NA),pflf(NA),pdvk(NA),pdvh(NA),
       pfwh(NA),pb(NA),pq(NA), pretty(_p), haveOutgroup(_ho)
   {
-#if defined(HAVE_LIMITS)
     DEPS = std::numeric_limits<double>::epsilon();
     NA = std::numeric_limits<double>::min();
-#else
-    DEPS = DBL_EPSILON;
-    NA = DBL_MIN;
-#endif
   }
 };
 
 string pvalsImpl::as_string(const double & d)
 {
-#if defined(HAVE_SSTREAM)
   typedef ostringstream _ostr;
-#elif defined(HAVE_STRSTREAM)
-  typedef std::ostrstream _ostr;
-#endif
   _ostr o;
   o<<d;
   return o.str();
@@ -523,10 +499,11 @@ pvals::pvals(gsl_rng * rng,
 	  S = (args->useTotMuts) ? r.impl->nm : r.impl->S;
 	}
 
-      Sequence::gsl_uniform01 uni01(rng); //takes no arguments
-      Sequence::gsl_uniform uni(rng);     //takes two doubles a and b, and returns a U[a,b)
-      Sequence::gsl_exponential expo(rng);//takes the mean as an argument
-      Sequence::gsl_poisson poiss(rng);   //takes the mean as an argument
+      std::function<double(void)> uni01 = [rng](){ return gsl_rng_uniform(rng); };
+      std::function<double(const double&,const double&)> uni = [rng](const double & a, const double & b){ return gsl_ran_flat(rng,a,b); };
+      std::function<double(const double&)> expo = [rng](const double & mean){ return gsl_ran_exponential(rng,mean); };
+      std::function<double(const double&)> poiss = [rng](const double & mean){ return gsl_ran_poisson(rng,mean); };
+
       vector<chromosome> initialized_sample = init_sample( std::vector<int>(1,r.impl->nsam),1 );
       marginal initialized_marginal = init_marginal(r.impl->nsam);
       const unsigned NRUNS = 1000;

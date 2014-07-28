@@ -21,7 +21,7 @@
 #include <Sequence/PolySNP.hpp>
 #include <Sequence/Comeron95.hpp>
 #include <Sequence/RedundancyCom95.hpp>
-#include <Sequence/SeqRegexes.hpp>
+//#include <Sequence/SeqRegexes.hpp>
 #include <codingRegionProcessor.hpp>
 #include <tstvbias.hpp>
 #include <polydNdSbase.hpp>
@@ -109,6 +109,7 @@ int main (int argc, char *argv[])
 	  exit(1);
 	}
       GetData(data,input);
+      /*
       for(unsigned i=0;i<data.size();++i)
 	{
 	  if (! validSeq(data[i].begin(),data[i].end(),basic_dna_alphabet) )
@@ -116,6 +117,7 @@ int main (int argc, char *argv[])
 	      throw badFormat("characters other than A,G,C,T,N were encountered in the alignment.\nThis program is only intended to deal with haploid (or phased diploid) data, and no ambiguity symbols.");
 	    }
 	}
+      */
       if(!IsAlignment(data))
 	{
 	  cerr << "error: data don't seem to be aligned...\n";

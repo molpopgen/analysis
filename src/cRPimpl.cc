@@ -6,16 +6,11 @@
 #include <CodonMaker.hpp>
 
 #include <limits>
-#if defined(HAVE_SSTREAM)
 #include <sstream>
-typedef std::ostringstream _ostr;
-#elif defined(HAVE_STRSTREAM)
-#include <strstream>
-typedef std::ostrstream _ostr;
-#else
-#error
-#endif
 #include <iostream>
+
+typedef std::ostringstream _ostr;
+
 using namespace Sequence;
 
 std::vector<int> nextSNPs(const int & num_next_snps,

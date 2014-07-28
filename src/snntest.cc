@@ -12,7 +12,6 @@
 #include <Sequence/Fasta.hpp>
 #include <Sequence/Alignment.hpp>
 #endif
-#include <boost/bind.hpp>
 #include <getopt.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
@@ -144,6 +143,7 @@ int main(int argc, char **argv)
     {
       snpTable.RemoveMultiHits();
     }
+
   gsl_rng * r = gsl_rng_alloc(gsl_rng_default);
   gsl_rng_set(r,0);
 
@@ -165,13 +165,14 @@ int main(int argc, char **argv)
 
       std::cout << "pop1\tpop2\tsnn\tp\n";
       result = Sequence::Snn_test(snpTable,&(p.config[0]),npop,
-				  boost::bind(gsl_ran_flat,r,0.,_1),p.nperms);
+				  std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+				  p.nperms);
       std::cout << "nan\tnan\t" << result.first << ' ' << result.second << '\n';
       if(npop>2)
 	{
 	  pairwise_result = Sequence::Snn_test_pairwise(snpTable,
 							&(p.config[0]),npop,
-							boost::bind(gsl_ran_flat,r,0.,_1),
+							std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
 							p.nperms);
 	  for( unsigned i = 0 ; i < pairwise_result.size() ; ++i )
 	    {
@@ -190,12 +191,13 @@ int main(int argc, char **argv)
       while( (rv=d.fromfile(stdin)) != EOF )
 	{
 	  result = Sequence::Snn_test(d,&(p.config[0]),npop,
-				      boost::bind(gsl_ran_flat,r,0.,_1),p.nperms);
+	    std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+				      p.nperms);
 	  std::cout << rep << "\tnan\tnan\t" << result.first << '\t' << result.second << '\n';
 	  if(npop>2)
 	    {
 	      pairwise_result = Sequence::Snn_test_pairwise(d,&(p.config[0]),npop,
-							    boost::bind(gsl_ran_flat,r,0.,_1),
+							    std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
 							    p.nperms);
 	      
 	      for( unsigned i = 0 ; i < pairwise_result.size() ; ++i )
