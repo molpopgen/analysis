@@ -109,15 +109,10 @@ int main (int argc, char *argv[])
 	  exit(1);
 	}
       GetData(data,input);
-      /*
-      for(unsigned i=0;i<data.size();++i)
+      if (! validForPolyAnalysis(data.begin(),data.end()) )
 	{
-	  if (! validSeq(data[i].begin(),data[i].end(),basic_dna_alphabet) )
-	    {
-	      throw badFormat("characters other than A,G,C,T,N were encountered in the alignment.\nThis program is only intended to deal with haploid (or phased diploid) data, and no ambiguity symbols.");
-	    }
+	  throw badFormat("characters other than A,G,C,T,N were encountered in the alignment.\nThis program is only intended to deal with haploid (or phased diploid) data, and no ambiguity symbols.");
 	}
-      */
       if(!IsAlignment(data))
 	{
 	  cerr << "error: data don't seem to be aligned...\n";

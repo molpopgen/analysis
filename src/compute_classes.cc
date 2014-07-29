@@ -31,8 +31,8 @@ using namespace Alignment;
 
 namespace Sequence
 {
-  int MAX_SEGSITES = 200;
-  int MAX_SEGS_INC = 100;
+  MAX_SEG_T MAX_SEGSITES = 200;
+  MAX_SEG_T MAX_SEGS_INC = 100;
 }
 compute_params::compute_params() : infileglob(NULL),
 				   outfile(NULL),
