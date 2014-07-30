@@ -21,9 +21,8 @@
 #include <fstream>
 #include <exception>
 #include <limits>
-
-#include <gsl/gsl_rng.h>
-#include <gsl/gsl_randist.h>
+#include <random>
+#include <ctime> 
 
 using namespace std;
 using namespace Sequence;
@@ -34,6 +33,7 @@ namespace Sequence
   MAX_SEG_T MAX_SEGSITES = 200;
   MAX_SEG_T MAX_SEGS_INC = 100;
 }
+
 compute_params::compute_params() : infileglob(NULL),
 				   outfile(NULL),
 				   haveOutgroup(false),
@@ -476,8 +476,7 @@ std::string  pvalsImpl::stat_as_string(const double & d)
   return ( (d != NA) ? as_string(d) : "NA" );
 }
 
-pvals::pvals(gsl_rng * rng,
-	     const results & r,
+pvals::pvals(const results & r,
 	     const compute_params * args)
   : impl(new pvalsImpl(args->pretty,r.impl->haveOutgroup))
 {
@@ -499,10 +498,11 @@ pvals::pvals(gsl_rng * rng,
 	  S = (args->useTotMuts) ? r.impl->nm : r.impl->S;
 	}
 
-      std::function<double(void)> uni01 = [rng](){ return gsl_rng_uniform(rng); };
-      std::function<double(const double&,const double&)> uni = [rng](const double & a, const double & b){ return gsl_ran_flat(rng,a,b); };
-      std::function<double(const double&)> expo = [rng](const double & mean){ return gsl_ran_exponential(rng,mean); };
-      std::function<double(const double&)> poiss = [rng](const double & mean){ return gsl_ran_poisson(rng,mean); };
+      std::mt19937 generator(std::time(0));
+      std::uniform_real_distribution<double> uni01(0.,1.);
+      std::function<double(const double&,const double&)> uni = [&generator](const double & a, const double & b){ return std::uniform_real_distribution<double>(a,b)(generator); };
+      std::function<double(const double&)> expo = [&generator](const double & mean){ return std::exponential_distribution<double>(1./mean)(generator); };
+      std::function<double(const double&)> poiss = [&generator](const double & mean){ return std::poisson_distribution<unsigned>(mean)(generator); };
 
       vector<chromosome> initialized_sample = init_sample( std::vector<int>(1,r.impl->nsam),1 );
       marginal initialized_marginal = init_marginal(r.impl->nsam);

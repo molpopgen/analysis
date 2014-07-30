@@ -65,7 +65,7 @@ MKtest_DEPENDENCIES =
 am_compute_OBJECTS = compute.$(OBJEXT) compute_functions.$(OBJEXT) \
 	compute_classes.$(OBJEXT) int_handler.$(OBJEXT)
 compute_OBJECTS = $(am_compute_OBJECTS)
-compute_DEPENDENCIES =
+compute_LDADD = $(LDADD)
 am_descPoly_OBJECTS = descPoly.$(OBJEXT) polyCommon.$(OBJEXT)
 descPoly_OBJECTS = $(am_descPoly_OBJECTS)
 descPoly_LDADD = $(LDADD)
@@ -86,13 +86,13 @@ polydNdS_OBJECTS = $(am_polydNdS_OBJECTS)
 polydNdS_LDADD = $(LDADD)
 am_rsq_OBJECTS = rsq.$(OBJEXT)
 rsq_OBJECTS = $(am_rsq_OBJECTS)
-rsq_DEPENDENCIES =
+rsq_LDADD = $(LDADD)
 am_sharedPoly_OBJECTS = sharedPoly.$(OBJEXT)
 sharedPoly_OBJECTS = $(am_sharedPoly_OBJECTS)
 sharedPoly_LDADD = $(LDADD)
 am_snntest_OBJECTS = snntest.$(OBJEXT)
 snntest_OBJECTS = $(am_snntest_OBJECTS)
-snntest_DEPENDENCIES =
+snntest_LDADD = $(LDADD)
 am_translateCoding_OBJECTS = translateCoding.$(OBJEXT) \
 	polydNdSbase.$(OBJEXT)
 translateCoding_OBJECTS = $(am_translateCoding_OBJECTS)
@@ -320,10 +320,10 @@ snntest_SOURCES = snntest.cc #getopt.c getopt1.c getopt.h getoptFix.h
 # CFLOAT =
 # endif
 @HAVE_GSL_HEADERS_TRUE@MKtest_LDADD = -lm -lgsl -lgslcblas
-@HAVE_GSL_HEADERS_TRUE@compute_LDADD = -lgsl -lgslcblas
-@HAVE_GSL_HEADERS_TRUE@snntest_LDADD = -lgsl -lgslcblas
-@HAVE_GSL_HEADERS_TRUE@rsq_LDADD = -lgsl -lgslcblas
 @HAVE_GSL_HEADERS_FALSE@GSL = 
+#compute_LDADD=-lgsl -lgslcblas
+#snntest_LDADD=-lgsl -lgslcblas
+#rsq_LDADD=-lgsl -lgslcblas
 @HAVE_GSL_HEADERS_TRUE@GSL = -DHAVE_GSL
 
 #polydNdS_LDADD=-lboost_regex

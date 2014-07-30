@@ -13,14 +13,14 @@
 #include <Sequence/Alignment.hpp>
 #endif
 #include <getopt.h>
-#include <gsl/gsl_rng.h>
-#include <gsl/gsl_randist.h>
 #include <vector>
 #include <numeric>
 #include <iostream>
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
+#include <random>
+
 
 enum FILETYPE { UNKNOWN,FASTA,SIMPLE,MS };
 struct params
@@ -42,6 +42,14 @@ struct params
 void usage();
 
 params parseargs(int argc, char **argv);
+
+//simple wrapper for us to use
+void shuffle_it( std::vector<unsigned>::iterator beg,
+		 std::vector<unsigned>::iterator end,
+		 std::mt19937 & generator )
+{
+  std::shuffle(beg,end,generator);
+}
 
 int main(int argc, char **argv)
 {
@@ -144,8 +152,10 @@ int main(int argc, char **argv)
       snpTable.RemoveMultiHits();
     }
 
-  gsl_rng * r = gsl_rng_alloc(gsl_rng_default);
-  gsl_rng_set(r,0);
+  std::mt19937 generator(std::time(0));
+  std::function<void(std::vector<unsigned>::iterator,
+		     std::vector<unsigned>::iterator)> __x = [&generator](std::vector<unsigned>::iterator  a,
+									  std::vector<unsigned>::iterator  b) { return shuffle_it(a,b,generator); };
 
   std::ofstream outfile;
   if( ! p.outfile.empty() )
@@ -165,14 +175,14 @@ int main(int argc, char **argv)
 
       std::cout << "pop1\tpop2\tsnn\tp\n";
       result = Sequence::Snn_test(snpTable,&(p.config[0]),npop,
-				  std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+				  __x,
 				  p.nperms);
       std::cout << "nan\tnan\t" << result.first << ' ' << result.second << '\n';
       if(npop>2)
 	{
 	  pairwise_result = Sequence::Snn_test_pairwise(snpTable,
 							&(p.config[0]),npop,
-							std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+							__x,
 							p.nperms);
 	  for( unsigned i = 0 ; i < pairwise_result.size() ; ++i )
 	    {
@@ -191,13 +201,13 @@ int main(int argc, char **argv)
       while( (rv=d.fromfile(stdin)) != EOF )
 	{
 	  result = Sequence::Snn_test(d,&(p.config[0]),npop,
-	    std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+				      __x,
 				      p.nperms);
 	  std::cout << rep << "\tnan\tnan\t" << result.first << '\t' << result.second << '\n';
 	  if(npop>2)
 	    {
 	      pairwise_result = Sequence::Snn_test_pairwise(d,&(p.config[0]),npop,
-							    std::bind(gsl_ran_flat,r,0.,std::placeholders::_1),
+							    __x,
 							    p.nperms);
 	      
 	      for( unsigned i = 0 ; i < pairwise_result.size() ; ++i )

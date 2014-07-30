@@ -2,7 +2,6 @@
 #define __COMPUTE_CLASSES_HPP__
 
 #include <iosfwd>
-#include <gsl/gsl_rng.h>
 
 struct compute_params
 {
@@ -51,7 +50,7 @@ class pvals
 private:
   pvalsImpl * impl;
 public:
-  explicit pvals(gsl_rng * r,const results & res,
+  explicit pvals(const results & res,
 		 const compute_params * args);
   std::ostream & print(std::ostream & o) const;
   ~pvals();

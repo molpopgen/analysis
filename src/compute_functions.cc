@@ -1,19 +1,12 @@
 #include <iostream>
-#include <ctime>
-#if defined (__SVR4) && defined (__sun)
-#include <ieeefp.h>
-#endif
 
 #include <compute_functions.hpp>
 #include <compute_classes.hpp>
-#include <gsl/gsl_rng.h>
 using namespace std;
 
 void process(glob_t *files,  compute_params *args, ostream & ofstr,
 	      int  argc,  char** argv)
 {
-  gsl_rng * rng = gsl_rng_alloc(gsl_rng_mt19937);
-  gsl_rng_set(rng,time(0));
   for(int i=0;i<files->gl_pathc;++i)
     {
       results r(files->gl_pathv[i],args);
@@ -45,7 +38,7 @@ void process(glob_t *files,  compute_params *args, ostream & ofstr,
 	  if (args->probs)
 	    {
 	      //get pvals from 10000 coal sims w/o recombination
-	      pvals p(rng,r,args);
+	      pvals p(r,args);
 	      ofstr << p;
 	    }
 	}

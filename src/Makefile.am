@@ -69,9 +69,9 @@ snntest_SOURCES=snntest.cc #getopt.c getopt1.c getopt.h getoptFix.h
 
 if HAVE_GSL_HEADERS
 MKtest_LDADD=-lm -lgsl -lgslcblas
-compute_LDADD=-lgsl -lgslcblas
-snntest_LDADD=-lgsl -lgslcblas
-rsq_LDADD=-lgsl -lgslcblas
+#compute_LDADD=-lgsl -lgslcblas
+#snntest_LDADD=-lgsl -lgslcblas
+#rsq_LDADD=-lgsl -lgslcblas
 GSL= -DHAVE_GSL
 else
 GSL=
