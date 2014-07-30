@@ -16,13 +16,22 @@
 #include <Sequence/Recombination.hpp>
 #include <getopt.h>
 #include <limits>
+#include <algorithm>
+#include <functional>
 
 using namespace std;
 using namespace Sequence;
 using namespace Sequence::Alignment;
 
-int
-main (int argc, char *argv[])
+//simple wrapper for us to use
+void shuffle_it( std::vector<double>::iterator beg,
+		 std::vector<double>::iterator end,
+		 std::mt19937 & generator )
+{
+  std::shuffle(beg,end,generator);
+}
+
+int main (int argc, char *argv[])
 {
   if (argc == 1)
     {
@@ -146,8 +155,6 @@ main (int argc, char *argv[])
   vector < vector<double> > diseq_vals;// =P->Disequilibrium(mincount,max_marker_distance);
   vector<double> distance,rsq,Dprime;
 
-  std::mt19937 generator(std::time(0));
-
   cout << "sitei\tsitej\trsq\tD\tDprime\n";
   bool maintest=true;
   //while( Recombination::Disequilibrium(p,LDSTATS,&i,&j,false,0,mincount,max_marker_distance) )
@@ -176,14 +183,18 @@ main (int argc, char *argv[])
   delete P;
   if( test )
     {
+      std::mt19937 generator(std::time(0));
+      std::function<void(std::vector<double>::iterator,
+			 std::vector<double>::iterator)> __x = [&generator](std::vector<double>::iterator  a,
+									    std::vector<double>::iterator  b) { return shuffle_it(a,b,generator); }; 
       double obs = ProductMoment()(distance.begin(),distance.end(),rsq.begin());
       double p = (obs > 0) ? PermuteCorrelation(distance.begin(),distance.end(),rsq.begin(),
 						ProductMoment(),std::greater_equal<double>(),
-						generator,
+						__x,
 						nperms) :
 	PermuteCorrelation(distance.begin(),distance.end(),rsq.begin(),
 			   ProductMoment(),std::less_equal<double>(),
-			   generator,
+			   __x,
 			   nperms);
 
       cout <<"#Product moment correlation between distance and r^2 is " << obs;
@@ -191,11 +202,11 @@ main (int argc, char *argv[])
       obs = ProductMoment()(distance.begin(),distance.end(),Dprime.begin());
       p = (obs > 0) ? PermuteCorrelation(distance.begin(),distance.end(),Dprime.begin(),
 					 ProductMoment(),std::greater_equal<double>(),
-					 generator,
+					 __x,
 					 nperms) :
 	PermuteCorrelation(distance.begin(),distance.end(),Dprime.begin(),
 			   ProductMoment(),std::less_equal<double>(),
-			   generator,
+			   __x,
 			   nperms);
 
       cout <<"#Product moment correlation between distance and D' is " << obs
