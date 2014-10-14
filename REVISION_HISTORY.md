@@ -1,8 +1,6 @@
 ***analysis README****
 Copyright 2002 Kevin Thornton, University of Chicago
 
-NOTE: it appears that there was a bug in polydNdS (likely affecting at least versions 0.7.7-0.8.0) with respect to counting the number of sites in coding regions.  The bug was likely introduced in a relatively recent version, but I cannot track down when.  As a result, the program should not be used until further notics.
-
 * current version 0.8.4 (Nov 9, 2013)  Updated for libsequence 1.7.8, which is required for this version
 
 * version 0.8.3 (Dec. 18, 2012)  Bug fixed:  rsq was outputting too many columns, such that the output didn't match the column headers.

@@ -1,0 +1,1 @@
+NOTE: it appears that there was a bug in polydNdS (likely affecting at least versions 0.7.7-0.8.0) with respect to counting the number of sites in coding regions.  The bug was likely introduced in a relatively recent version, but I cannot track down when.  As a result, the program should not be used until further notics.
