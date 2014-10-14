@@ -12,7 +12,7 @@ I originally wrote these programs with high-quality data in mind (_e.g._ double-
 
 ###Source code
 
-The library code is [here](https://github.com/molpopgen/analysis)
+The source code is available [here](https://github.com/molpopgen/analysis)
 
 ###Dependencies 
 
