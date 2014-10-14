@@ -151,7 +151,7 @@ statistics of the frequency spectrum, and statistics such as Rm.  The reason
 for this is to force the user to acknowledge that something special may need
 to be done with such numbers.
 
-*version 0.4.4 -- bugfix for "compute".  when there were no seg
+* version 0.4.4 -- bugfix for "compute".  when there were no seg
 sites, and the -p option was used, a segfault occured (due to running sims
 with S = 0).  This is now fixed and "NA" is output for p-values for
 statistics for such data.  Also, first release of "MKtest," a program to do
@@ -166,11 +166,11 @@ silent change being labelled as a replacement change.
 
 * version 0.4.1 -- updated to libsequence >= 1.2.1
 
-*version 0.3.9 -- compatible with libsequence &gt;= 1.1.8
+* version 0.3.9 -- compatible with libsequence &gt;= 1.1.8
 
-*version 0.3.8 -- now works with g++ 3.1 on OS X
+* version 0.3.8 -- now works with g++ 3.1 on OS X
 
-*version 0.3.7 -- added #include directives to compute that fix
+* version 0.3.7 -- added #include directives to compute that fix
 compile problems on OS X
 
 * version 0.3.6--updates to new cpptools package, resulting in more
