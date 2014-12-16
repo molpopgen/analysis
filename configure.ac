@@ -1,6 +1,6 @@
 AC_PREREQ(2.59)
 
-AC_INIT(compute, [0.8.5], [https://github.com/molpopgen/analysis])
+AC_INIT(analysis, [0.8.6], [https://github.com/molpopgen/analysis])
 AC_CONFIG_SRCDIR([src/compute.cc])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config-h.in])
