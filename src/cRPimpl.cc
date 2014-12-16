@@ -259,36 +259,36 @@ void cRPimpl::process_coding_region(const std::vector< Sequence::Fasta > &data,
 		  switch (pdata.first) //check codon position of change
 		    {
 		    case 0: //1st
-		      if (pdata.second == shortestPath::N)
+		      if (pdata.second == shortestPath::pathType::N)
 			{
 			  addToTable(data,snp_positions,indexed_pos_1,
 				     repl_pos,repl_char);
 			}
-		      else if (pdata.second == shortestPath::S)
+		      else if (pdata.second == shortestPath::pathType::S)
 			{
 			  addToTable(data,snp_positions,indexed_pos_1,
 				     silent_pos,silent_char);
 			}
 		      break;
 		    case 1: //2nd
-		      if (pdata.second == shortestPath::N)
+		      if (pdata.second == shortestPath::pathType::N)
 			{
 			  addToTable(data,snp_positions,indexed_pos_2,
 				     repl_pos,repl_char);
 			}
-		      else if (pdata.second == shortestPath::S)
+		      else if (pdata.second == shortestPath::pathType::S)
 			{
 			  addToTable(data,snp_positions,indexed_pos_2,
 				     silent_pos,silent_char);
 			}
 		      break;
 		    case 2: //3rd
-		      if (pdata.second == shortestPath::N)
+		      if (pdata.second == shortestPath::pathType::N)
 			{
 			  addToTable(data,snp_positions,indexed_pos_3,
 				     repl_pos,repl_char);
 			}
-		      else if (pdata.second == shortestPath::S)
+		      else if (pdata.second == shortestPath::pathType::S)
 			{
 			  addToTable(data,snp_positions,indexed_pos_3,
 				     silent_pos,silent_char);

@@ -263,10 +263,10 @@ int main (int argc, char *argv[])
 			{
 			  switch ( *(types.begin()) )
 			    {
-			    case shortestPath::S :
+			    case shortestPath::pathType::S :
 			      contingency_table[FIXEDS]++;
 			      break;
-			    case shortestPath::N :
+			    case shortestPath::pathType::N :
 			      contingency_table[FIXEDA]++;
 			      break;
 			    default:
@@ -484,37 +484,37 @@ void updateFixCells( const shortestPath::pathType & type,
 {
   switch (type)
     {
-    case shortestPath::S :
+    case shortestPath::pathType::S :
       ++(*fixedS);
       break;
-    case shortestPath::N :
+    case shortestPath::pathType::N :
       ++(*fixedA);
       break;
-    case shortestPath::SN :
+    case shortestPath::pathType::SN :
       (*fixedS)++;
       (*fixedA)++;
       break;
-    case shortestPath::SS :
+    case shortestPath::pathType::SS :
       (*fixedS)+=2;
       break;
-    case shortestPath::NN :
+    case shortestPath::pathType::NN :
       (*fixedA)+=2;
       
       break;
-    case shortestPath::SSS :
+    case shortestPath::pathType::SSS :
             (*fixedS)+=3;
       
       break;
-    case shortestPath::SSN :
+    case shortestPath::pathType::SSN :
             (*fixedS)+=2;
       
             (*fixedA)++;
       break;
-    case shortestPath::SNN :
+    case shortestPath::pathType::SNN :
       (*fixedS)++;
             (*fixedA)+=2;
       break;
-    case shortestPath::NNN :
+    case shortestPath::pathType::NNN :
             (*fixedA)+=3;
 	    //(*fixedA)+=1;
       break;
