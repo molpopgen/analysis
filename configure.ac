@@ -3,7 +3,7 @@ AC_PREREQ(2.59)
 AC_INIT(analysis, [0.8.6], [https://github.com/molpopgen/analysis])
 AC_CONFIG_SRCDIR([src/compute.cc])
 AM_INIT_AUTOMAKE
-AC_CONFIG_HEADERS([config-h.in])
+AC_CONFIG_HEADERS([config.h])
 
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -12,7 +12,7 @@ AC_C_CONST
 AC_PROG_CXX
 AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])
 
-AM_MAINTAINER_MODE([enable])
+AM_MAINTAINER_MODE([disable])
 
 AC_LANG(C++)
 AC_CONFIG_FILES([Makefile src/Makefile])
@@ -34,6 +34,20 @@ AC_ARG_ENABLE(profiling,
   *) AC_MSG_ERROR(bad value ${enableval} for --enable-profiling) ;;
 esac],[profiling=false])
 AM_CONDITIONAL(PROFILING, test x$profiling = xtrue)
+
+AC_MSG_CHECKING(for namespace Sequence::coalsim)
+AC_TRY_COMPILE(
+[
+#include <Sequence/Coalescent/Coalescent.hpp>                                                            
+
+using namespace Sequence::coalsim;
+],
+[
+Sequence::coalsim::arg x;
+],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SEQUENCE_COALSIM],[],"Have namespace Sequence::coalsim")],
+[AC_MSG_RESULT(no)])
 
 dnl check for things that we need
 

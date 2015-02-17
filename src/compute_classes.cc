@@ -24,10 +24,13 @@
 #include <random>
 #include <ctime> 
 
+#include <config.h>
 using namespace std;
 using namespace Sequence;
 using namespace Alignment;
-
+#ifdef HAVE_SEQUENCE_COALSIM
+using namespace Sequence::coalsim;
+#endif
 namespace Sequence
 {
   MAX_SEG_T MAX_SEGSITES = 200;
@@ -512,7 +515,11 @@ pvals::pvals(const results & r,
       while(nruns--)
 	{
 	  vector<chromosome> sample(initialized_sample);
+#ifdef HAVE_SEQUENCE_COALSIM
+	  Sequence::coalsim::arg history(1,initialized_marginal);
+#else
 	  Sequence::arg history(1,initialized_marginal);
+#endif
 	  int NSAM = r.impl->nsam;
 	  double t = 0.;
 	  while(NSAM>1)
