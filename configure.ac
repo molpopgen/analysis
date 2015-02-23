@@ -80,6 +80,7 @@ AC_LANG_SAVE
 AC_LANG_RESTORE
 dnl AM_CONFIG_HEADER(config.h)
 
+dnl check for libsequence < 1.8.3 or >= 1.8.4. differences
 AC_MSG_CHECKING(for Sequence::make_polySiteVector)
 AC_TRY_LINK(
 [
