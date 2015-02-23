@@ -1,11 +1,17 @@
 #include <polyCommon.hpp>
 
 #include<algorithm>
-
+#include <config.h>
 #include <Sequence/SeqConstants.hpp>
 #include <Sequence/PolySites.hpp>
+#if defined(HAVE_SEQUENCE_ROTATEPOLYTABLE) && !defined(HAVE_SEQUENCE_MAKE_POLYSITEVECTOR)
 #include <Sequence/PolyTableManip.hpp>
+#else
+#include <Sequence/polySiteVector.hpp>
+#endif 
 #include <Sequence/PolySites.hpp>
+
+
 
 using namespace std;
 using namespace Sequence;
@@ -106,7 +112,11 @@ vpuu checkAdjacentPoly(const vector<Fasta> &data, const bool &haveOutgroup,
   if(poly.numsites() > 1)
     {
       //make a 90-degree counterclockwise rotation of the poly table
+#if defined(HAVE_SEQUENCE_ROTATEPOLYTABLE) && !defined(HAVE_SEQUENCE_MAKE_POLYSITEVECTOR)
       polySiteVector _Data = rotatePolyTable(&poly);
+#else
+      polySiteVector _Data = make_polySiteVector(poly);
+#endif
 
       //if the outgroup is present, we need
       //to remove it from the rotated data

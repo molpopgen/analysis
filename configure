@@ -5021,6 +5021,72 @@ ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ex
 ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Sequence::make_polySiteVector" >&5
+$as_echo_n "checking for Sequence::make_polySiteVector... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#include <Sequence/polySiteVector.hpp>
+#include <Sequence/SimData.hpp>
+using namespace Sequence;
+
+int
+main ()
+{
+
+SimData d;
+auto rd = make_polySiteVector(d);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_SEQUENCE_MAKE_POLYSITEVECTOR /**/" >>confdefs.h
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Sequence::rotatePolyTable" >&5
+$as_echo_n "checking for Sequence::rotatePolyTable... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#include <Sequence/PolyTableManip.hpp>
+#include <Sequence/SimData.hpp>
+using namespace Sequence;
+
+int
+main ()
+{
+
+SimData d;
+auto rd = rotatePolyTable(&d);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_SEQUENCE_ROTATEPOLYTABLE /**/" >>confdefs.h
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure

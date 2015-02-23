@@ -15,6 +15,12 @@
 /* "Have namespace Sequence::coalsim" */
 #undef HAVE_SEQUENCE_COALSIM
 
+/* "Have Sequence::make_polySiteVector" */
+#undef HAVE_SEQUENCE_MAKE_POLYSITEVECTOR
+
+/* "Have Sequence::rotatePolyTable" */
+#undef HAVE_SEQUENCE_ROTATEPOLYTABLE
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

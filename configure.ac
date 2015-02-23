@@ -80,4 +80,34 @@ AC_LANG_SAVE
 AC_LANG_RESTORE
 dnl AM_CONFIG_HEADER(config.h)
 
+AC_MSG_CHECKING(for Sequence::make_polySiteVector)
+AC_TRY_LINK(
+[
+#include <Sequence/polySiteVector.hpp>                                                            
+#include <Sequence/SimData.hpp>
+using namespace Sequence;
+],
+[
+SimData d;
+auto rd = make_polySiteVector(d);
+],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SEQUENCE_MAKE_POLYSITEVECTOR],[],"Have Sequence::make_polySiteVector")],
+[AC_MSG_RESULT(no)])
+
+AC_MSG_CHECKING(for Sequence::rotatePolyTable)
+AC_TRY_LINK(
+[
+#include <Sequence/PolyTableManip.hpp>                                                            
+#include <Sequence/SimData.hpp>
+using namespace Sequence;
+],
+[
+SimData d;
+auto rd = rotatePolyTable(&d);
+],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SEQUENCE_ROTATEPOLYTABLE],[],"Have Sequence::rotatePolyTable")],
+[AC_MSG_RESULT(no)])
+
 AC_OUTPUT
