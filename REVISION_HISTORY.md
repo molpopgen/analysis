@@ -1,6 +1,8 @@
-* current version 0.8.5 (Oct 13, 2014).  Updated for libsequence 1.8.3 / C++11
+* current version 0.8.6 (Feb. 23, 2015).  Updated for libsequence 1.8.4 
 
-*  version 0.8.4 (Nov 9, 2013)  Updated for libsequence 1.7.8, which is required for this version
+* version 0.8.5 (Oct 13, 2014).  Updated for libsequence 1.8.3 / C++11
+
+* version 0.8.4 (Nov 9, 2013)  Updated for libsequence 1.7.8, which is required for this version
 
 * version 0.8.3 (Dec. 18, 2012)  Bug fixed:  rsq was outputting too many columns, such that the output didn't match the column headers.
 
