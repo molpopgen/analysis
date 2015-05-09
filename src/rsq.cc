@@ -18,6 +18,7 @@
 #include <limits>
 #include <algorithm>
 #include <functional>
+#include <random>
 
 using namespace std;
 using namespace Sequence;
