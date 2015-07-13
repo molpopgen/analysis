@@ -1,3 +1,17 @@
+##This is a retired package
+
+As of July 13, 2015, this package is "retired" and will no longer be supported or maintained.
+
+The programs in this package have their origin in the days of using Sanger sequencing to study genetic variation.  The movement towards short-read-based resequencing means that software like this may not be applicable to modern data sets based on modest coverage.
+
+This software did its job for a decade or more, and still has some use in certain applications, but it is time to stop supporting it.
+
+"Retired" means that this code:
+
+* Will no longer be updated to track the development of [libsequence](http://github.com/molpopgen/libsequence).
+* Bugs will not be fixed, unless they trace back to libsequence itself.
+* Installation issues, etc., will not be dealt with
+
 ##The "analysis" package
 
 This is the homepage for __analysis__, which is a set of C++ tools for analyzing population-genetic data
